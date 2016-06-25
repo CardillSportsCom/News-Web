@@ -26,6 +26,11 @@
 	        url: '/posts/draft-retro',
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
+	    })	   
+	    .state('long-live-the-king', {
+	        url: '/posts/long-live-the-king',
+	        templateUrl: '/pages/long-live-the-king.html',
+	        
 	    })
 	    .state('finals-preview', {
 	        url: '/posts/finals-preview',

@@ -1,6 +1,8 @@
 angular.module('cardillApp').factory('articles', [function(){
     var o = {
         articles: [
+            {title: 'Finals Preview', author: 'Jvalant Dave', authorImg: 'images/jv.png', imgPath: 'images/finals-preview.png', link: '#/posts/finals-preview',
+                description: 'This is it. This is what it’s come down to. Why did we ever think it would end up differently? OKC Raptors, Spurs Cavs, Warriors Raptors, OKC Cavs, etc. All of that is moot as the prediction for the finals since the beginning of the season was that the Warriors and Cavs would have a rematch for the title of best basketball team in the world.  ...', },
             {title: 'Not So Fast', author: 'Zen Potter', authorImg: 'images/sujee.png', imgPath: 'images/not-so-fast.jpg', link: '#/posts/not-so-fast',
                 description: 'As the NBA keeps moving towards a world that allows smaller players to flourish with better spacing and ball movement, it seems like the end is near for the prototypical bigs. With analytical progression come numerous ideas as to exactly how to play basketball. While the three point line is the epitome of efficiency, the mid range, which was once a lethal shooting spot for the games brightest, has become a mockery of the inefficient player. We have the Derozans of the world that the stats ...', },
             {title: 'Draft Retrospective', author: 'Vithushan Nama', authorImg: 'images/vithushan.png', imgPath: 'images/draft-retro.png', link: '#/posts/draft-retro', 
