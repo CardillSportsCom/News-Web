@@ -41,6 +41,10 @@
 	color: #FFFFFF
 }
 
+.missing-stroshow {
+    background-image: url(/images/missing-stroshow.jpg);
+}
+
 .long-live-the-king {
     background-image: url(/images/long-live-the-king.jpg);
 }
