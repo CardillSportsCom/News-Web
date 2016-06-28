@@ -27,6 +27,11 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })	   
+	    .state('missing-stroshow', {
+	        url: '/posts/missing-stroshow',
+	        templateUrl: '/pages/missing-stroshow.html',
+	        
+	    })   
 	    .state('long-live-the-king', {
 	        url: '/posts/long-live-the-king',
 	        templateUrl: '/pages/long-live-the-king.html',
