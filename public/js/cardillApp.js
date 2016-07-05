@@ -27,9 +27,9 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })	   
-	    .state('meet-jacob-poetl', {
-	        url: '/posts/meet-jacob-poetl',
-	        templateUrl: '/pages/meet-jacob-poetl.html',
+	    .state('meet-jakob-poeltl', {
+	        url: '/posts/meet-jakob-poeltl',
+	        templateUrl: '/pages/meet-jakob-poeltl.html',
 	        
 	    })   
 	    .state('missing-stroshow', {
