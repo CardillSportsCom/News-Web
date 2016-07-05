@@ -1,6 +1,8 @@
 angular.module('cardillApp').factory('articles', [function(){
     var o = {
         articles: [
+             {title: 'Missing Stroshow', author: 'Braveen Ravi', authorImg: 'images/braveen.jpg', imgPath: 'images/missing-stroshow.jpg', link: '#/posts/missing-stroshow',
+                description: 'Near the end of the 2015 MLB season, Toronto Blue Jays received a blessing in disguise. With Marcus Stroman\'s miraculous return back into the Blue Jays starting rotation just months after tearing his ACL, he made a sudden impact for the Toronto Blue Jays\' push to the post season . With his sudden return, he electrified the Jays rotation with countless strikeouts and with his charisma on and off the field...', },
              {title: 'Long Live the King', author: 'Prageen Siva', authorImg: 'images/prageen.png', imgPath: 'images/long-live-the-king.jpg', link: '#/posts/long-live-the-king',
                 description: 'In a series full of blowouts, game 7 between the Warriors and Cavaliers was an instant classic. The Warriors started off strong with Draymond doing the best he could to make up for his Game 5 suspension by going on absolute fire in the first half (5-5 3pm, 22 points). It was a classic perimeter vs. paint gameas Cleveland was just 1-14 behind the arc with 28 of their 42 points coming within the inside...', },
             {title: 'Finals Preview', author: 'Jvalant Dave', authorImg: 'images/jv.png', imgPath: 'images/finals-preview.png', link: '#/posts/finals-preview',
