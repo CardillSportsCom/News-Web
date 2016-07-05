@@ -27,6 +27,11 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })	   
+	    .state('meet-jacob-poetl', {
+	        url: '/posts/meet-jacob-poetl',
+	        templateUrl: '/pages/meet-jacob-poetl.html',
+	        
+	    })   
 	    .state('missing-stroshow', {
 	        url: '/posts/missing-stroshow',
 	        templateUrl: '/pages/missing-stroshow.html',
