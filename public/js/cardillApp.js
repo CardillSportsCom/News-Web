@@ -26,6 +26,11 @@
 	        url: '/posts/draft-retro',
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
+	    })
+	    .state('parity-what-nba-parity', {
+	        url: '/posts/parity-what-nba-parity',
+	        templateUrl: '/pages/parity-what-nba-parity.html',
+	        
 	    })	   
 	    .state('meet-jakob-poeltl', {
 	        url: '/posts/meet-jakob-poeltl',
