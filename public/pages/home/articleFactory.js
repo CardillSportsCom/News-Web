@@ -1,6 +1,8 @@
 angular.module('cardillApp').factory('articles', [function(){
     var o = {
         articles: [
+             {title: 'Meet Jacob Poeltl', author: 'Prageen Siva', authorImg: 'images/prageen.png', imgPath: 'images/meet-jakob-poeltl.png', link: '#/posts/meet-jakob-poeltl',
+                description: 'The Toronto Raptors, who held the 9th pick in the 2016 NBA draft, are coming off a historic season. Not only did the Raptors reach the Eastern Conference Finals for the first time in the franchise’s 21 years, but they also achieved a team record of 56 wins. However, with great achievements, there are greater expectations; the Raptors are now pushing for a....', },
              {title: 'Missing Stroshow', author: 'Braveen Ravi', authorImg: 'images/braveen.jpg', imgPath: 'images/missing-stroshow.jpg', link: '#/posts/missing-stroshow',
                 description: 'Near the end of the 2015 MLB season, Toronto Blue Jays received a blessing in disguise. With Marcus Stroman\'s miraculous return back into the Blue Jays starting rotation just months after tearing his ACL, he made a sudden impact for the Toronto Blue Jays\' push to the post season . With his sudden return, he electrified the Jays rotation with countless strikeouts and with his charisma on and off the field...', },
              {title: 'Long Live the King', author: 'Prageen Siva', authorImg: 'images/prageen.png', imgPath: 'images/long-live-the-king.jpg', link: '#/posts/long-live-the-king',
