@@ -22,6 +22,16 @@
     			}]
     		}	       
 	    })
+	    .state('sample', {
+	        url: '/posts/sample',
+	        templateUrl: '/pages/sample/sample.html',
+	        controller: 'SampleController',
+	        resolve: {
+   				postPromise: ['sample', function(sample){
+      				return sample.getArticle();
+    			}]
+    		}
+	    })	 
 	    .state('draft-retro', {
 	        url: '/posts/draft-retro',
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',

@@ -75,4 +75,23 @@ var getRedditPosts = function(req, res, next) {
 router.get('/reddit/:after', getRedditPosts);
 router.get('/reddit', getRedditPosts);
 
+var getArticle = function(req, res, next) {
+    var pathString = "/Article/ViewArticle/?articleID=9";
+    
+    var options = {
+        host: 'cardillsports.gear.host',
+        path: pathString,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    requestController.getJSON(options, function(statusCode, result) {    
+        res.statusCode = statusCode;
+        res.json(result);
+    });
+}
+router.get('/article', getArticle);
+
 module.exports = router;

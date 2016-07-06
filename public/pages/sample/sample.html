@@ -1,0 +1,28 @@
+<!-- Post Content -->
+<div class="container">
+
+    <header class="jumbotron" style="background-image: url(images/{{article.ImageLink}})">
+        <div class="article-header">
+            <h1>{{article.Name}}</h1>
+            <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
+        </div> 
+    </header>
+  
+
+    <article>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+
+                <div ng-repeat="item in article.ArticleItems">
+                    <div ng-if="item.Type == 'Text'">
+                        <p class="post-text">{{item.Paragraph}}</p>
+                    </div>
+                    <div ng-if="item.Type == 'Image'">
+                        <img ng-src=images/rd2-gm7-img/{{item.Link}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+</div>
