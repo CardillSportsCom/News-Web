@@ -27,6 +27,11 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })
+	    .state('a-new-beginning-dwight-howard', {
+	        url: '/posts/a-new-beginning-dwight-howard',
+	        templateUrl: '/pages/a-new-beginning-dwight-howard.html',
+	        
+	    })	   
 	    .state('parity-what-nba-parity', {
 	        url: '/posts/parity-what-nba-parity',
 	        templateUrl: '/pages/parity-what-nba-parity.html',

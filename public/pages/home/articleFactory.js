@@ -1,6 +1,8 @@
 angular.module('cardillApp').factory('articles', [function(){
     var o = {
         articles: [
+             {title: 'Parity, What Nba Parity?', author: 'Bman', authorImg: 'images/bman.png', imgPath: 'images/parity-what-nba-parity.jpg', link: '#/posts/parity-what-nba-parity',
+                description: 'Good for Durant, because realistically if he were to chase a championship, GSW was the best place to go to. They already had ridiculous shooters like Curry and Thompson, and so adding  Durant to the mix just made them an NBA 2k team...', },
              {title: 'Meet Jacob Poeltl', author: 'Prageen Siva', authorImg: 'images/prageen.png', imgPath: 'images/meet-jakob-poeltl.png', link: '#/posts/meet-jakob-poeltl',
                 description: 'The Toronto Raptors, who held the 9th pick in the 2016 NBA draft, are coming off a historic season. Not only did the Raptors reach the Eastern Conference Finals for the first time in the franchise’s 21 years, but they also achieved a team record of 56 wins. However, with great achievements, there are greater expectations; the Raptors are now pushing for a....', },
              {title: 'Missing Stroshow', author: 'Braveen Ravi', authorImg: 'images/braveen.jpg', imgPath: 'images/missing-stroshow.jpg', link: '#/posts/missing-stroshow',
