@@ -1,0 +1,28 @@
+<div *ngIf="article">
+
+        <header class="jumbotron" style="background-image: url({{cleanImage()}})">
+            <div class="article-header">
+                <h1>{{article.Name}}</h1>
+                <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
+            </div> 
+        </header>
+
+        <article>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div *ngFor="let item of article.ArticleItems;">
+                    <div *ngIf="item.Type == 'Text'">
+                      <p class="post-text">
+                        {{item.Paragraph}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </article>
+
+</div>   
+<div *ngIf="!article" class="row">
+   No article found
+</div>  
+

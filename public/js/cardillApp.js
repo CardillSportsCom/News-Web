@@ -22,20 +22,20 @@
     			}]
     		}	       
 	    })
-	    .state('sample', {
-	        url: '/posts/sample',
-	        templateUrl: '/pages/sample/sample.html',
-	        controller: 'SampleController',
-	        resolve: {
-   				postPromise: ['sample', function(sample){
-      				return sample.getArticle();
-    			}]
-    		}
-	    })	 
 	    .state('draft-retro', {
 	        url: '/posts/draft-retro',
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
+	    })
+	    .state('a-new-beginning-dwight-howard', {
+	        url: '/posts/a-new-beginning-dwight-howard',
+	        templateUrl: '/pages/a-new-beginning-dwight-howard.html',
+	        
+	    })	   
+	    .state('parity-what-nba-parity', {
+	        url: '/posts/parity-what-nba-parity',
+	        templateUrl: '/pages/parity-what-nba-parity.html',
+	        
 	    })	   
 	    .state('meet-jakob-poeltl', {
 	        url: '/posts/meet-jakob-poeltl',

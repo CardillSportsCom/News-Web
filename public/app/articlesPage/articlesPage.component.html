@@ -1,0 +1,17 @@
+<div class="articles view indent">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                    <filter-textbox class="navbar-right"
+                     (changed)="filterChanged($event)"></filter-textbox>
+                
+            </div>
+        </div>
+    
+        <article-cards 
+          [articles]="articles"></article-cards>
+
+    </div>
+
+    
+</div>

@@ -1,0 +1,22 @@
+
+    <div class="row card-container">
+        <div class="col-sm-8 col-md-6 col-lg-6" *ngFor="let article of articles;">
+            <article class="feature">                
+                    <a [routerLink]="['/articles',article.ID,'details']">
+
+                        <img class="img-responsive" src="images/{{article.ImageLink}}" alt="" />
+
+                        <div class="article-metadata">
+                            <h4>{{article.Name}}</h4>
+                            <div>
+                                <img class="circular" src="images/{{article.Owner.userPicture}}">
+                                <span class="author-name">{{article.Owner.firstName}} {{article.Owner.lastName}}</span>
+                            </div>                            
+                        </div>
+                    </a>
+            </article>
+        </div>
+        <div *ngIf="!articles.length">
+            No Records Found
+        </div>
+    </div>
