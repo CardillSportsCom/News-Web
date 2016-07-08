@@ -27,6 +27,11 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })
+	    .state('why-dont-people-watch-the-wnba', {
+	        url: '/posts/why-dont-people-watch-the-wnba',
+	        templateUrl: '/pages/why-dont-people-watch-the-wnba.html',
+	        
+	    })	 
 	    .state('a-new-beginning-dwight-howard', {
 	        url: '/posts/a-new-beginning-dwight-howard',
 	        templateUrl: '/pages/a-new-beginning-dwight-howard.html',
