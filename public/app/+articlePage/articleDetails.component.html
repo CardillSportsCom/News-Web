@@ -12,9 +12,8 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                   <div *ngFor="let item of article.ArticleItems;">
                     <div *ngIf="item.Type == 'Text'">
-                      <p class="post-text">
-                        {{item.Paragraph}}
-                      </p>
+                      <!--<p class="post-text">{{item.Paragraph}}</p> -->
+                      <p class="post-text" [innerHTML]="item.Paragraph"></p>
                     </div>
                   </div>
                 </div>

@@ -11,28 +11,29 @@ import { ICustomer, IOrder, IState,
 
 @Injectable()
 export class DataService {
-    _cardillBase: string = '//cardillsports.gear.host/';
+    _cardillBase: string = 'cardillsports.gear.host/';
     _baseUrl: string = '';
     customers: ICustomer[];
     orders: IOrder[];
     states: IState[];
-    articlesResponse: IAllArticlesResponse;
+    articles: IArticleData[];
     articleResponse: ISingleArticlesResponse;
 
     constructor(private http: Http) { }
     
     getArticles() : Observable<IArticleData[]> {
-        if (!this.articlesResponse) {
+        if (!this.articles) {
             return this.http.get(this._cardillBase + 'Home/Articles/')
-                        .map((res: Response) => {                        
-                            this.articlesResponse = res.json();
-                            return this.articlesResponse.articleList;
+                        .map((res: Response) => {
+                            const articleResponse : IAllArticlesResponse = res.json();                        
+                            this.articles = articleResponse.articleList;
+                            return this.articles;
                         })
                         .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.articlesResponse.articleList);
+            return this.createObservable(this.articles);
         }
     }
 
@@ -52,17 +53,20 @@ export class DataService {
     }
 
     getArticle(id: number) : Observable<IArticleData> {
-        if (!this.articleResponse) {
-            return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id + "/")
-                        .map((res: Response) => {
-                            this.articleResponse = res.json();
-                            return this.articleResponse.articleData;
-                        })
-                        .catch(this.handleError);
-        }
-        else {
-            //return cached data
-            return this.createObservable(this.articleResponse.articleData);
+        if (this.articles) {
+            //filter using cached data
+            return this.findArticleObservable(id);
+        } else {
+            //Query the existing customers to find the target customer
+            return Observable.create((observer: Observer<IArticleData>) => {
+                    this.getArticles().subscribe((articles: IArticleData[]) => {
+                        this.articles = articles;            
+                        const artic = this.filterArticles(id);
+                        observer.next(artic);
+                        observer.complete();
+                })
+            })
+            .catch(this.handleError);
         }
     }
 
@@ -126,10 +130,19 @@ export class DataService {
     private findCustomerObservable(id: number) : Observable<ICustomer> {        
         return this.createObservable(this.filterCustomers(id));
     }
+
+    private findArticleObservable(id: number) : Observable<IArticleData> {        
+        return this.createObservable(this.filterArticles(id));
+    }
     
     private filterCustomers(id: number) : ICustomer {
         const custs = this.customers.filter((cust) => cust.id === id);
         return (custs.length) ? custs[0] : null;
+    }
+
+    private filterArticles(id: number) : IArticleData {
+        const items = this.articles.filter((item) => item.ID === id);
+        return (items.length) ? items[0] : null;
     }
     
     private createObservable(data: any) : Observable<any> {
