@@ -2,7 +2,7 @@
     <div class="row card-container">
         <div class="col-sm-8 col-md-6 col-lg-6" *ngFor="let article of articles;">
             <article class="feature">                
-                    <a [routerLink]="['/articles',article.ID,'details']">
+                    <a [routerLink]="['/articles',article.ID]">
 
                         <img class="img-responsive" src="images/{{article.ImageLink}}" alt="" />
 

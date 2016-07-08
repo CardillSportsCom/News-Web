@@ -11,13 +11,12 @@ import { ICustomer, IOrder, IState,
 
 @Injectable()
 export class DataService {
-    _cardillBase: string = 'cardillsports.gear.host/';
+    _cardillBase: string = 'http://cardillsports.gear.host/';
     _baseUrl: string = '';
     customers: ICustomer[];
     orders: IOrder[];
     states: IState[];
     articles: IArticleData[];
-    articleResponse: ISingleArticlesResponse;
 
     constructor(private http: Http) { }
     
@@ -53,21 +52,15 @@ export class DataService {
     }
 
     getArticle(id: number) : Observable<IArticleData> {
-        if (this.articles) {
-            //filter using cached data
-            return this.findArticleObservable(id);
-        } else {
-            //Query the existing customers to find the target customer
-            return Observable.create((observer: Observer<IArticleData>) => {
-                    this.getArticles().subscribe((articles: IArticleData[]) => {
-                        this.articles = articles;            
-                        const artic = this.filterArticles(id);
-                        observer.next(artic);
-                        observer.complete();
-                })
-            })
-            .catch(this.handleError);
-        }
+        return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id)
+                        .map((res: Response) => {
+                            console.log(res);
+                            const articleResponse : ISingleArticlesResponse = res.json();                        
+                            console.log(articleResponse);
+                                                        
+                            return articleResponse.articleData;
+                        })
+                        .catch(this.handleError);
     }
 
     getCustomer(id: number) : Observable<ICustomer> {
@@ -141,8 +134,11 @@ export class DataService {
     }
 
     private filterArticles(id: number) : IArticleData {
+        console.log("DFDFS");
         const items = this.articles.filter((item) => item.ID === id);
-        return (items.length) ? items[0] : null;
+        const res =  (items.length) ? items[0] : null;
+        console.log(items);
+        return res;
     }
     
     private createObservable(data: any) : Observable<any> {

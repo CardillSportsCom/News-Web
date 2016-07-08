@@ -26,7 +26,7 @@ export class FeaturedArticleComponent implements OnInit {
    }
   
   ngOnInit() {
-    console.log(this.article);
+    
   }
 
 }

@@ -18,7 +18,6 @@ var FeaturedArticleComponent = (function () {
         this.trackby = trackby;
     }
     FeaturedArticleComponent.prototype.ngOnInit = function () {
-        console.log(this.article);
     };
     __decorate([
         core_1.Input(), 

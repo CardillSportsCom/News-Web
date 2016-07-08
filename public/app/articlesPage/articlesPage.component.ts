@@ -31,11 +31,6 @@ export class ArticlesPageComponent implements OnInit {
     this.filterText = 'Filter Customers:';
     this.displayMode = DisplayModeEnum.Card;
 
-    this.dataService.getCustomers()
-        .subscribe((customers: ICustomer[]) => {
-          this.customers = this.filteredCustomers = customers;
-        });
-
     this.dataService.getArticles()
       .subscribe((articles: IArticleData[]) => {
         this.articles = articles;

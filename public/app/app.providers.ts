@@ -11,5 +11,5 @@ export const APP_PROVIDERS = [
     DataService,
     TrackByService,
     HTTP_PROVIDERS,
-    //bind(LocationStrategy).toClass(HashLocationStrategy)
+    bind(LocationStrategy).toClass(HashLocationStrategy)
 ];

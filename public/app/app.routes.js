@@ -1,10 +1,19 @@
 "use strict";
 var router_1 = require('@angular/router');
-var articlesPage_routes_1 = require('./articlesPage/articlesPage.routes');
-var customer_routes_1 = require('./+articlePage/customer.routes');
-var home_routes_1 = require('./homePage/home.routes');
-exports.App_Routes = articlesPage_routes_1.CustomersRoutes.concat(customer_routes_1.CustomerRoutes, home_routes_1.HomeRoutes);
+var common_1 = require('@angular/common');
+var home_component_1 = require('./homePage/home.component');
+var articlesPage_component_1 = require('./articlesPage/articlesPage.component');
+var articleDetails_component_1 = require('./+articlePage/articleDetails.component');
+exports.App_Routes = [
+    //...CustomersRoutes,
+    //...CustomerRoutes,
+    //...HomeRoutes,
+    { path: '', component: home_component_1.HomeComponent },
+    { path: 'articles', component: articlesPage_component_1.ArticlesPageComponent },
+    { path: 'articles/:id', component: articleDetails_component_1.ArticleDetailsComponent }
+];
 exports.APP_ROUTER_PROVIDERS = [
-    router_1.provideRouter(exports.App_Routes)
+    router_1.provideRouter(exports.App_Routes),
+    { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }
 ];
 //# sourceMappingURL=app.routes.js.map

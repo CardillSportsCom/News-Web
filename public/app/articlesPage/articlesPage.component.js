@@ -27,10 +27,6 @@ var ArticlesPageComponent = (function () {
         this.title = 'Customers';
         this.filterText = 'Filter Customers:';
         this.displayMode = DisplayModeEnum.Card;
-        this.dataService.getCustomers()
-            .subscribe(function (customers) {
-            _this.customers = _this.filteredCustomers = customers;
-        });
         this.dataService.getArticles()
             .subscribe(function (articles) {
             _this.articles = articles;

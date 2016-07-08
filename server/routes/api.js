@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var requestController = require('requestController');
 
 var PlayerRankingSchema = new mongoose.Schema({
     1: Object,
@@ -42,13 +41,6 @@ router.post('/ranking', function(req, res, next) {
     });
 });
 
-
-router.get('/reddit2', function(req, res, next) {  
-    requestController.getSampleData(function(result) {        
-        res.json(result);
-    });
-});
-
 var getRedditPosts = function(req, res, next) {  
     
     var pathString = "/r/nba/top.json?sort=top&t=month&limit=100";
@@ -66,10 +58,10 @@ var getRedditPosts = function(req, res, next) {
         }
     };
 
-    requestController.getJSON(options, function(statusCode, result) {    
+   /* requestController.getJSON(options, function(statusCode, result) {    
         res.statusCode = statusCode;
         res.json(result);
-    });
+    });*/
 };
 
 router.get('/reddit/:after', getRedditPosts);

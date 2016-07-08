@@ -3,13 +3,18 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { APP_PROVIDERS } from './app.providers';
 import {HomeComponent } from './homePage/home.component'
+import {NavigationComponent } from './navigation/navigation.component'
+
 @Component({ 
   moduleId: module.id,
   selector: 'app-container',
-  template: `<router-outlet></router-outlet>`,
-  directives: [ ROUTER_DIRECTIVES ],
+  template: `
+    <navigation></navigation>
+    <router-outlet></router-outlet>
+  `,
+  directives: [ ROUTER_DIRECTIVES, NavigationComponent],
   providers: [ APP_PROVIDERS ],
-  precompile: [HomeComponent]
+  precompile: [HomeComponent, NavigationComponent]
 })
 export class AppComponent {
   

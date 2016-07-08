@@ -22,17 +22,18 @@ var DataService = (function () {
     }
     DataService.prototype.getArticles = function () {
         var _this = this;
-        if (!this.articlesResponse) {
-            return this.http.get(this._cardillBase + 'Home/Articles')
+        if (!this.articles) {
+            return this.http.get(this._cardillBase + 'Home/Articles/')
                 .map(function (res) {
-                _this.articlesResponse = res.json();
-                return _this.articlesResponse.articleList;
+                var articleResponse = res.json();
+                _this.articles = articleResponse.articleList;
+                return _this.articles;
             })
                 .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.articlesResponse.articleList);
+            return this.createObservable(this.articles);
         }
     };
     DataService.prototype.getCustomers = function () {
@@ -51,19 +52,14 @@ var DataService = (function () {
         }
     };
     DataService.prototype.getArticle = function (id) {
-        var _this = this;
-        if (!this.articleResponse) {
-            return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id)
-                .map(function (res) {
-                _this.articleResponse = res.json();
-                return _this.articleResponse.articleData;
-            })
-                .catch(this.handleError);
-        }
-        else {
-            //return cached data
-            return this.createObservable(this.articleResponse.articleData);
-        }
+        return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id)
+            .map(function (res) {
+            console.log(res);
+            var articleResponse = res.json();
+            console.log(articleResponse);
+            return articleResponse.articleData;
+        })
+            .catch(this.handleError);
     };
     DataService.prototype.getCustomer = function (id) {
         var _this = this;
@@ -127,9 +123,19 @@ var DataService = (function () {
     DataService.prototype.findCustomerObservable = function (id) {
         return this.createObservable(this.filterCustomers(id));
     };
+    DataService.prototype.findArticleObservable = function (id) {
+        return this.createObservable(this.filterArticles(id));
+    };
     DataService.prototype.filterCustomers = function (id) {
         var custs = this.customers.filter(function (cust) { return cust.id === id; });
         return (custs.length) ? custs[0] : null;
+    };
+    DataService.prototype.filterArticles = function (id) {
+        console.log("DFDFS");
+        var items = this.articles.filter(function (item) { return item.ID === id; });
+        var res = (items.length) ? items[0] : null;
+        console.log(items);
+        return res;
     };
     DataService.prototype.createObservable = function (data) {
         return Observable_1.Observable.create(function (observer) {

@@ -26,7 +26,6 @@ var HomeComponent = (function () {
             .subscribe(function (articles) {
             _this.featuredArticle = articles[0];
             _this.articles = articles.slice(1);
-            console.log(_this.featuredArticle.Name);
         });
     };
     HomeComponent = __decorate([

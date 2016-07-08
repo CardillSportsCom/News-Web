@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
       .subscribe((articles: IArticleData[]) => {
         this.featuredArticle = articles[0];
         this.articles = articles.slice(1);
-        console.log(this.featuredArticle.Name);
       });
   }
 

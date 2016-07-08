@@ -10,24 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var app_providers_1 = require('./app.providers');
-var home_component_1 = require('./homePage/home.component');
-var navigation_component_1 = require('./navigation/navigation.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var NavigationComponent = (function () {
+    function NavigationComponent() {
     }
-    AppComponent = __decorate([
+    NavigationComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app-container',
-            template: "\n    <navigation></navigation>\n    <router-outlet></router-outlet>\n  ",
-            directives: [router_1.ROUTER_DIRECTIVES, navigation_component_1.NavigationComponent],
-            providers: [app_providers_1.APP_PROVIDERS],
-            precompile: [home_component_1.HomeComponent, navigation_component_1.NavigationComponent]
+            selector: 'navigation',
+            templateUrl: 'navigation.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], NavigationComponent);
+    return NavigationComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.NavigationComponent = NavigationComponent;
+//# sourceMappingURL=navigation.component.js.map
