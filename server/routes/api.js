@@ -23,15 +23,17 @@ var PlayerRanking = mongoose.model('PlayerRanking', PlayerRankingSchema);
 var ArticleSchema = new mongoose.Schema({
     ID: Number,
     Name: String,
-    ImamgeLink: String
+    ImamgeLink: String,
+    DateCreated: Date
 });
 
 var ArticleModel = mongoose.model('Article', ArticleSchema);
 
 router.get('/articles', function(req, res, next) {
-    ArticleModel.find(function(err, articles){
-        if(err){ return next(err); }
-        res.json(articles);
+    ArticleModel.find({}).sort({DateCreated: 'descending'}).exec(
+        function(err, articles){
+            if(err){ return next(err); }
+            res.json(articles);
     });
 });
 
@@ -39,6 +41,7 @@ router.get('/article/:id', function(req, res, next) {
     var id = req.params.id;
     ArticleModel.findOne({ID: id}, function(err, article){
         if(err){ return next(err); }
+        console.log(article.DateCreated);
         res.json(article);
     });
 });
