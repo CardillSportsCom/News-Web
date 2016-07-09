@@ -18,11 +18,32 @@ var PlayerRankingSchema = new mongoose.Schema({
     submitter: String
 });
 
-
 var PlayerRanking = mongoose.model('PlayerRanking', PlayerRankingSchema);
 
+var ArticleSchema = new mongoose.Schema({
+    ID: Number,
+    Name: String,
+    ImamgeLink: String
+});
 
-router.get('/rankings', function(req, res, next) {
+var ArticleModel = mongoose.model('Article', ArticleSchema);
+
+router.get('/articles', function(req, res, next) {
+    ArticleModel.find(function(err, articles){
+        if(err){ return next(err); }
+        res.json(articles);
+    });
+});
+
+router.get('/article/:id', function(req, res, next) {
+    var id = req.params.id;
+    ArticleModel.findOne({ID: id}, function(err, article){
+        if(err){ return next(err); }
+        res.json(article);
+    });
+});
+
+router.get('/rankings', function(req, res, next) {    
     PlayerRanking.find(function(err, playerRanking){
         if(err){ return next(err); }
         res.json(playerRanking);
