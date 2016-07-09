@@ -20,19 +20,34 @@ var DataService = (function () {
         this._cardillBase = 'http://cardillsports.gear.host/';
         this._baseUrl = '';
     }
-    DataService.prototype.getArticles = function () {
+    DataService.prototype.getAllArticles = function () {
         var _this = this;
-        if (!this.articles) {
+        if (!this.allArticles) {
             return this.http.get(this._baseUrl + 'api/articles')
                 .map(function (res) {
-                _this.articles = res.json();
-                return _this.articles;
+                _this.allArticles = res.json();
+                return _this.allArticles;
             })
                 .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.articles);
+            return this.createObservable(this.allArticles);
+        }
+    };
+    DataService.prototype.getHomePageArticles = function (limit) {
+        var _this = this;
+        if (!this.homeArticles) {
+            return this.http.get(this._baseUrl + 'api/articles/' + limit)
+                .map(function (res) {
+                _this.homeArticles = res.json();
+                return _this.homeArticles;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.homeArticles);
         }
     };
     DataService.prototype.getCustomers = function () {
@@ -129,7 +144,7 @@ var DataService = (function () {
     };
     DataService.prototype.filterArticles = function (id) {
         console.log("DFDFS");
-        var items = this.articles.filter(function (item) { return item.ID === id; });
+        var items = this.article.filter(function (item) { return item.ID === id; });
         var res = (items.length) ? items[0] : null;
         console.log(items);
         return res;

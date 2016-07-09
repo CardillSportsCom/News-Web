@@ -16,22 +16,38 @@ export class DataService {
     customers: ICustomer[];
     orders: IOrder[];
     states: IState[];
-    articles: IArticleData[];
+    allArticles: IArticleData[];
+    homeArticles: IArticleData[];
 
     constructor(private http: Http) { }
     
-    getArticles() : Observable<IArticleData[]> {
-        if (!this.articles) {
+    getAllArticles() : Observable<IArticleData[]> {
+        if (!this.allArticles) {
             return this.http.get(this._baseUrl + 'api/articles')
                         .map((res: Response) => {
-                            this.articles = res.json();                        
-                            return this.articles;
+                            this.allArticles = res.json();                        
+                            return this.allArticles;
                         })
                         .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.articles);
+            return this.createObservable(this.allArticles);
+        }
+    }
+
+    getHomePageArticles(limit: number) : Observable<IArticleData[]> {
+        if (!this.homeArticles) {
+            return this.http.get(this._baseUrl + 'api/articles/' + limit)
+                        .map((res: Response) => {
+                            this.homeArticles = res.json();                        
+                            return this.homeArticles;
+                        })
+                        .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.homeArticles);
         }
     }
 
@@ -131,7 +147,7 @@ export class DataService {
 
     private filterArticles(id: number) : IArticleData {
         console.log("DFDFS");
-        const items = this.articles.filter((item) => item.ID === id);
+        const items = this.article.filter((item) => item.ID === id);
         const res =  (items.length) ? items[0] : null;
         console.log(items);
         return res;
