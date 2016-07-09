@@ -18,44 +18,55 @@ var ArticlesPageComponent = (function () {
     function ArticlesPageComponent(dataService) {
         this.dataService = dataService;
         this.customers = [];
-        this.filteredCustomers = [];
-        this.displayModeEnum = DisplayModeEnum;
+        this.filteredArticles = [];
         this.articles = [];
     }
     ArticlesPageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.title = 'Customers';
         this.filterText = 'Filter Customers:';
-        this.displayMode = DisplayModeEnum.Card;
-        this.dataService.getArticles()
+        this.dataService.getAllArticles()
             .subscribe(function (articles) {
             _this.articles = articles;
+            _this.filteredArticles = articles;
         });
     };
-    ArticlesPageComponent.prototype.changeDisplayMode = function (mode) {
-        this.displayMode = mode;
-    };
     ArticlesPageComponent.prototype.filterChanged = function (data) {
-        if (data && this.customers) {
+        //console.log(data);
+        console.log(this.articles[0]);
+        if (data && this.articles) {
             data = data.toUpperCase();
-            var props_1 = ['firstName', 'lastName', 'address', 'city', 'orderTotal'];
-            var filtered = this.customers.filter(function (item) {
+            var props_1 = ['Name', 'Owner'];
+            var filtered = this.articles.filter(function (item) {
                 var match = false;
                 for (var _i = 0, props_2 = props_1; _i < props_2.length; _i++) {
                     var prop = props_2[_i];
                     //console.log(item[prop] + ' ' + item[prop].toUpperCase().indexOf(data));
-                    if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
-                        match = true;
-                        break;
+                    if (prop == 'Name') {
+                        if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                    else {
+                        var ownerProps = ['firstName', 'lastName'];
+                        for (var _a = 0, ownerProps_1 = ownerProps; _a < ownerProps_1.length; _a++) {
+                            var ownerProp = ownerProps_1[_a];
+                            if (item[prop][ownerProp].toString().toUpperCase().indexOf(data) > -1) {
+                                match = true;
+                                break;
+                            }
+                        }
                     }
                 }
                 ;
                 return match;
             });
-            this.filteredCustomers = filtered;
+            console.log(filtered.length + "LENGTH");
+            this.filteredArticles = filtered;
         }
         else {
-            this.filteredCustomers = this.customers;
+            this.filteredArticles = this.articles;
         }
     };
     ArticlesPageComponent = __decorate([
@@ -71,10 +82,4 @@ var ArticlesPageComponent = (function () {
     return ArticlesPageComponent;
 }());
 exports.ArticlesPageComponent = ArticlesPageComponent;
-var DisplayModeEnum;
-(function (DisplayModeEnum) {
-    DisplayModeEnum[DisplayModeEnum["Card"] = 0] = "Card";
-    DisplayModeEnum[DisplayModeEnum["Grid"] = 1] = "Grid";
-    DisplayModeEnum[DisplayModeEnum["Map"] = 2] = "Map";
-})(DisplayModeEnum || (DisplayModeEnum = {}));
 //# sourceMappingURL=articlesPage.component.js.map

@@ -19,9 +19,7 @@ export class ArticlesPageComponent implements OnInit {
   title: string;
   filterText: string;
   customers: ICustomer[] = [];
-  filteredCustomers: ICustomer[] = [];
-  displayMode: DisplayModeEnum;
-  displayModeEnum = DisplayModeEnum;
+  filteredArticles: IArticleData[] = [];
   articles: IArticleData[] = [];
 
   constructor(private dataService: DataService) { }
@@ -29,44 +27,49 @@ export class ArticlesPageComponent implements OnInit {
   ngOnInit() {
     this.title = 'Customers';
     this.filterText = 'Filter Customers:';
-    this.displayMode = DisplayModeEnum.Card;
 
-    this.dataService.getArticles()
+    this.dataService.getAllArticles()
       .subscribe((articles: IArticleData[]) => {
         this.articles = articles;
+        this.filteredArticles = articles;
       });
   }
 
-  changeDisplayMode(mode: DisplayModeEnum) {
-      this.displayMode = mode;
-  }
-
   filterChanged(data: string) {
-    if (data && this.customers) {
+    //console.log(data);
+    console.log(this.articles[0]);
+    if (data && this.articles) {
         data = data.toUpperCase();
-        let props = ['firstName', 'lastName', 'address', 'city', 'orderTotal'];
-        let filtered = this.customers.filter(item => {
+        let props = ['Name','Owner'];
+        let filtered = this.articles.filter(item => {
             let match = false;
             for (let prop of props) {
                 //console.log(item[prop] + ' ' + item[prop].toUpperCase().indexOf(data));
-                if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
-                  match = true;
-                  break;
+                if (prop == 'Name') {
+                  if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
+                    match = true;
+                    break;
+                  }
+                } else {  // 'Owner'
+                  let ownerProps = ['firstName', 'lastName'];
+                  for (let ownerProp of ownerProps) {
+                    if (item[prop][ownerProp].toString().toUpperCase().indexOf(data) > -1) {
+                      match = true;
+                      break;
+                    }
+                  }
+                  
                 }
+
             };
             return match;
         });
-        this.filteredCustomers = filtered;
+        console.log(filtered.length + "LENGTH");
+        this.filteredArticles = filtered;
     }
     else {
-      this.filteredCustomers = this.customers;
+      this.filteredArticles = this.articles;
     }
   }
 
-}
-
-enum DisplayModeEnum {
-  Card = 0,
-  Grid = 1,
-  Map = 2
 }
