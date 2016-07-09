@@ -12,17 +12,21 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var capitalize_pipe_1 = require('../../shared/pipes/capitalize.pipe');
 var trim_pipe_1 = require('../../shared/pipes/trim.pipe');
-var trackby_service_1 = require('../../shared/services/trackby.service');
 var FeaturedArticleComponent = (function () {
-    function FeaturedArticleComponent(trackby) {
-        this.trackby = trackby;
+    function FeaturedArticleComponent() {
     }
     FeaturedArticleComponent.prototype.ngOnInit = function () {
+    };
+    FeaturedArticleComponent.prototype.ngOnChanges = function () {
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], FeaturedArticleComponent.prototype, "article", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FeaturedArticleComponent.prototype, "bannerImage", void 0);
     FeaturedArticleComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -35,7 +39,7 @@ var FeaturedArticleComponent = (function () {
             //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [trackby_service_1.TrackByService])
+        __metadata('design:paramtypes', [])
     ], FeaturedArticleComponent);
     return FeaturedArticleComponent;
 }());

@@ -1,6 +1,6 @@
 <div *ngIf="article">
 
-        <header class="jumbotron" style="background-image: url({{cleanImage()}})">
+        <header class="jumbotron" [style.background-image]="articleImage">
             <div class="article-header">
                 <h1>{{article.Name}}</h1>
                 <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        

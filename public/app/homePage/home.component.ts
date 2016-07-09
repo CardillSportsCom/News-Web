@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { FeaturedArticleComponent } from './featuredArticle/featuredArticle.component';
 import { DataService } from '../shared/services/data.service';
 import { ArticleCardsComponent } from '../articlesPage/articleCards.component';
-
+import { DomSanitizationService, SafeStyle} from '@angular/platform-browser';
 import { ICustomer, IOrder, IArticleData, IAllArticlesResponse } from '../shared/interfaces';
 
 @Component({ 
@@ -21,8 +21,9 @@ export class HomeComponent implements OnInit {
   title: string;
   featuredArticle: IArticleData;
   articles: IArticleData[] = [];
+  bannerImage: SafeStyle;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private sanitizer: DomSanitizationService) { }
   
   ngOnInit() {
     this.title = 'Customers';
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
     this.dataService.getArticles()
       .subscribe((articles: IArticleData[]) => {
         this.featuredArticle = articles[0];
+        this.bannerImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + this.featuredArticle.ImageLink);
         this.articles = articles.slice(1);
       });
   }

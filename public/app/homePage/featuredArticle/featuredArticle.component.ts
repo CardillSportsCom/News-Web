@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { SafeStyle} from '@angular/platform-browser';
 
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { TrimPipe } from '../../shared/pipes/trim.pipe';
@@ -17,15 +18,21 @@ import { TrackByService } from '../../shared/services/trackby.service';
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
   changeDetection: ChangeDetectionStrategy.OnPush 
 })
-export class FeaturedArticleComponent implements OnInit {
+export class FeaturedArticleComponent implements OnInit, OnChanges {
 
   @Input() article: IArticleData;
 
-  constructor(public trackby: TrackByService) {
+  @Input() bannerImage: SafeStyle;
+  
+  constructor() {
     
    }
   
   ngOnInit() {
+    
+  }
+
+  ngOnChanges() {
     
   }
 

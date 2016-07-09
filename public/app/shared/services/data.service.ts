@@ -22,10 +22,9 @@ export class DataService {
     
     getArticles() : Observable<IArticleData[]> {
         if (!this.articles) {
-            return this.http.get(this._cardillBase + 'Home/Articles/')
+            return this.http.get(this._baseUrl + 'api/articles')
                         .map((res: Response) => {
-                            const articleResponse : IAllArticlesResponse = res.json();                        
-                            this.articles = articleResponse.articleList;
+                            this.articles = res.json();                        
                             return this.articles;
                         })
                         .catch(this.handleError);
@@ -52,13 +51,10 @@ export class DataService {
     }
 
     getArticle(id: number) : Observable<IArticleData> {
-        return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id)
+        return this.http.get(this._baseUrl + 'api/article/' + id)
                         .map((res: Response) => {
-                            console.log(res);
-                            const articleResponse : ISingleArticlesResponse = res.json();                        
-                            console.log(articleResponse);
-                                                        
-                            return articleResponse.articleData;
+                            const article : IArticleData = res.json();                        
+                            return article;
                         })
                         .catch(this.handleError);
     }

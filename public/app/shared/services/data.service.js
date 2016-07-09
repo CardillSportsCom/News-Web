@@ -23,10 +23,9 @@ var DataService = (function () {
     DataService.prototype.getArticles = function () {
         var _this = this;
         if (!this.articles) {
-            return this.http.get(this._cardillBase + 'Home/Articles/')
+            return this.http.get(this._baseUrl + 'api/articles')
                 .map(function (res) {
-                var articleResponse = res.json();
-                _this.articles = articleResponse.articleList;
+                _this.articles = res.json();
                 return _this.articles;
             })
                 .catch(this.handleError);
@@ -52,12 +51,10 @@ var DataService = (function () {
         }
     };
     DataService.prototype.getArticle = function (id) {
-        return this.http.get(this._cardillBase + 'Article/ViewArticle/?articleID=' + id)
+        return this.http.get(this._baseUrl + 'api/article/' + id)
             .map(function (res) {
-            console.log(res);
-            var articleResponse = res.json();
-            console.log(articleResponse);
-            return articleResponse.articleData;
+            var article = res.json();
+            return article;
         })
             .catch(this.handleError);
     };

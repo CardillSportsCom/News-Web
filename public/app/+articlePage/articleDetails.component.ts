@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
-import { DomSanitizationService } from '@angular/platform-browser'
+import { SafeStyle, DomSanitizationService } from '@angular/platform-browser'
 import { ICustomer, IArticleData } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
 import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
@@ -14,17 +14,23 @@ import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
 })
 export class ArticleDetailsComponent implements OnInit {
 
+  sub: any;
   article: IArticleData;
   foo: string = "images/male.png";
+  articleImage: SafeStyle;
+  red: string = "red";
   constructor(private router: Router, private sanitizer: DomSanitizationService, private route: ActivatedRoute, private dataService: DataService) { }
 
-  public cleanImage() {
-      this.sanitizer.bypassSecurityTrustStyle("images/" +this.article.ImageLink);
-  }
-
+  
   ngOnInit() {
-      const id = +this.router.routerState.parent(this.route).snapshot.params['id'];
-      this.dataService.getArticle(id)
-          .subscribe((article: IArticleData) => this.article = article);
+      this.sub = this.route.params.subscribe(params => {
+        let id = +params['id']; // (+) converts string 'id' to a number
+        //TODO: chain observables
+        this.dataService.getArticle(id).subscribe((article: IArticleData) => {
+          this.article = article;
+          this.articleImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + this.article.ImageLink);
+        });
+      });
+      
   }
 }

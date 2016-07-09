@@ -20,15 +20,18 @@ var ArticleDetailsComponent = (function () {
         this.route = route;
         this.dataService = dataService;
         this.foo = "images/male.png";
+        this.red = "red";
     }
-    ArticleDetailsComponent.prototype.cleanImage = function () {
-        this.sanitizer.bypassSecurityTrustStyle("images/" + this.article.ImageLink);
-    };
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var id = +this.router.routerState.parent(this.route).snapshot.params['id'];
-        this.dataService.getArticle(id)
-            .subscribe(function (article) { return _this.article = article; });
+        this.sub = this.route.params.subscribe(function (params) {
+            var id = +params['id']; // (+) converts string 'id' to a number
+            //TODO: chain observables
+            _this.dataService.getArticle(id).subscribe(function (article) {
+                _this.article = article;
+                _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.article.ImageLink);
+            });
+        });
     };
     ArticleDetailsComponent = __decorate([
         core_1.Component({

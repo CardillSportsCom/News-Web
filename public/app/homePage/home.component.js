@@ -14,9 +14,11 @@ var router_1 = require('@angular/router');
 var featuredArticle_component_1 = require('./featuredArticle/featuredArticle.component');
 var data_service_1 = require('../shared/services/data.service');
 var articleCards_component_1 = require('../articlesPage/articleCards.component');
+var platform_browser_1 = require('@angular/platform-browser');
 var HomeComponent = (function () {
-    function HomeComponent(dataService) {
+    function HomeComponent(dataService, sanitizer) {
         this.dataService = dataService;
+        this.sanitizer = sanitizer;
         this.articles = [];
     }
     HomeComponent.prototype.ngOnInit = function () {
@@ -25,6 +27,7 @@ var HomeComponent = (function () {
         this.dataService.getArticles()
             .subscribe(function (articles) {
             _this.featuredArticle = articles[0];
+            _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.featuredArticle.ImageLink);
             _this.articles = articles.slice(1);
         });
     };
@@ -38,7 +41,7 @@ var HomeComponent = (function () {
                 articleCards_component_1.ArticleCardsComponent
             ]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService])
+        __metadata('design:paramtypes', [data_service_1.DataService, platform_browser_1.DomSanitizationService])
     ], HomeComponent);
     return HomeComponent;
 }());

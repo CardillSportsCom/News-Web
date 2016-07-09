@@ -10,7 +10,7 @@
                             <h4>{{article.Name}}</h4>
                             <div>
                                 <img class="circular" src="images/{{article.Owner.userPicture}}">
-                                <span class="author-name">{{article.Owner.firstName}} {{article.Owner.lastName}}</span>
+                                <span class="author-name">{{article.Owner.firstName | uppercase}} {{article.Owner.lastName | uppercase}}</span>
                             </div>                            
                         </div>
                     </a>

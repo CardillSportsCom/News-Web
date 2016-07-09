@@ -1,5 +1,5 @@
 <!-- Banner -->        
-<div *ngIf="article" id="banner">          
+<div *ngIf="bannerImage  && article" id="banner" [style.background-image]="bannerImage">          
     <h2>{{article.Name}}</h2>
     <p>
         <img class="img-responsive featured-author-img circular " src="images/{{article.Owner.userPicture}}">
