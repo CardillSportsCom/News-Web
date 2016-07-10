@@ -20,12 +20,14 @@ import { TrackByService } from '../shared/services/trackby.service';
 export class ArticleCardsComponent implements OnInit {
 
   @Input() articles: IArticleData[] = [];
+  
+  constructor() {
 
-  constructor(public trackby: TrackByService) {
-    
-   }
+  }
+   
   
   ngOnInit() {
+  
   }
 
 }

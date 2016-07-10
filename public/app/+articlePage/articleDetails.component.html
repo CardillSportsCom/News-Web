@@ -14,14 +14,57 @@
                     <div *ngIf="item.Type == 'Text'">
                       <!--<p class="post-text">{{item.Paragraph}}</p> -->
                       <p class="post-text" [innerHTML]="item.Paragraph"></p>
+                      <br>
                     </div>
                   </div>
                 </div>
             </div>
+            
             <sm-rating class="massive star" (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
             <br>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+            <div class="ui centered comments">            
+                <h3 class="ui dividing header">Comments</h3>
+                <div class="comment">
+        
+                    <div class="content">
+                    <b>Jason</b>
+                    <div class="metadata">
+                        <span class="date">Today at 5:42PM</span>
+                    </div>
+                    <div class="text">
+                        Sick article!
+                    </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="content">
+                    <b>Anonymous</b>
+                    <div class="metadata">
+                        <span class="date">Yesterday at 12:30AM</span>
+                    </div>
+                    <div class="text">
+                        <p>You suck at fantasy!</p>
+                    </div>
+                    
+                    </div>
+                </div>
+                <form class="ui reply form">
+                    <div class="field">
+                    <textarea></textarea>
+                    </div>
+                    <div class="ui blue labeled submit icon button">
+                    <i class="icon edit"></i> Add Reply
+                    </div>
+                </form>
+            </div>
+            </div>
+            </div>
         </article>
-
+    
+      
 </div>   
 <div *ngIf="!article" class="row">
    No article found
