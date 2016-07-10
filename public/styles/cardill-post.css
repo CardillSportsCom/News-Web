@@ -5,6 +5,25 @@ h4 {
     color: #51baa4
 }
 
+
+.ui.comments .comment {
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.ui.comments .comment .comments .comment {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+}
+
+.ui.fluid.card, .card:hover {
+    margin-bottom: 20px;
+    border-style: solid;
+    border-color: #51baa4;
+    border-width: thin;
+}
+
 .bannerImage {
   margin-top: 3.5em;
 }
@@ -56,7 +75,9 @@ html.touch *:hover {
 }
 
 .post-text {
-	color: #FFFFFF
+	color: #FFFFFF;
+    font-size: initial;
+    font-family: inherit;
 }
 
 .a-new-beginning-dwight-howard {
