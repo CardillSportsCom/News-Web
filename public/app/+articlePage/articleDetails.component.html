@@ -2,7 +2,9 @@
 
         <header class="jumbotron" [style.background-image]="articleImage">
             <div class="article-header">
+                <div class="ui massive start rating" #rating></div>
                 <h1>{{article.Name}}</h1>
+                <sm-rating (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
                 <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
             </div> 
         </header>
@@ -19,9 +21,7 @@
                   </div>
                 </div>
             </div>
-            
-            <sm-rating class="massive star" (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
-            <br>
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 

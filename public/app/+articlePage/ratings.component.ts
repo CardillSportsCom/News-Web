@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "sm-rating",
-    template: `<div class="ui {{class}} rating" #rating></div>`
+    template: `<div class="ui massive start rating" #rating></div>`
 })
 export class SemanticRatingComponent implements AfterViewInit {
     @Input() class: string;

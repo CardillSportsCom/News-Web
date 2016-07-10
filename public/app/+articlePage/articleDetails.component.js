@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var platform_browser_1 = require('@angular/platform-browser');
 var data_service_1 = require('../shared/services/data.service');
 var capitalize_pipe_1 = require('../shared/pipes/capitalize.pipe');
+var ratings_component_1 = require('./ratings.component');
 var ArticleDetailsComponent = (function () {
     function ArticleDetailsComponent(router, sanitizer, route, dataService) {
         this.router = router;
@@ -38,7 +39,7 @@ var ArticleDetailsComponent = (function () {
             moduleId: module.id,
             selector: 'article-details',
             templateUrl: 'articleDetails.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES, ratings_component_1.SemanticRatingComponent],
             pipes: [capitalize_pipe_1.CapitalizePipe]
         }), 
         __metadata('design:paramtypes', [router_1.Router, platform_browser_1.DomSanitizationService, router_1.ActivatedRoute, data_service_1.DataService])

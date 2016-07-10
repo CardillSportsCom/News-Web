@@ -48,7 +48,7 @@ var SemanticRatingComponent = (function () {
         core_1.Component({
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
             selector: "sm-rating",
-            template: "<div class=\"ui {{class}} rating\" #rating></div>"
+            template: "<div class=\"ui massive start rating\" #rating></div>"
         }), 
         __metadata('design:paramtypes', [])
     ], SemanticRatingComponent);

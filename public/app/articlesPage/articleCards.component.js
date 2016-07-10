@@ -12,10 +12,8 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var capitalize_pipe_1 = require('../shared/pipes/capitalize.pipe');
 var trim_pipe_1 = require('../shared/pipes/trim.pipe');
-var trackby_service_1 = require('../shared/services/trackby.service');
 var ArticleCardsComponent = (function () {
-    function ArticleCardsComponent(trackby) {
-        this.trackby = trackby;
+    function ArticleCardsComponent() {
         this.articles = [];
     }
     ArticleCardsComponent.prototype.ngOnInit = function () {
@@ -36,7 +34,7 @@ var ArticleCardsComponent = (function () {
             //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [trackby_service_1.TrackByService])
+        __metadata('design:paramtypes', [])
     ], ArticleCardsComponent);
     return ArticleCardsComponent;
 }());
