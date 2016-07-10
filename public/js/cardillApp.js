@@ -27,6 +27,11 @@
 	        templateUrl: '/pages/draft/draft-retro/draft-retro.html',
 	        controller: 'DraftRetroController'
 	    })
+	    .state('so-you-think-you-can-draft-1', {
+	        url: '/posts/so-you-think-you-can-draft-1',
+	        templateUrl: '/pages/so-you-think-you-can-draft-1.html',
+	        
+	    })	 
 	    .state('why-dont-people-watch-the-wnba', {
 	        url: '/posts/why-dont-people-watch-the-wnba',
 	        templateUrl: '/pages/why-dont-people-watch-the-wnba.html',

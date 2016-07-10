@@ -1,6 +1,8 @@
 angular.module('cardillApp').factory('articles', [function(){
     var o = {
         articles: [
+            {title: 'Why Don\'t People Watch the WNBA?', author: 'Kavitha Thiyagarajah', authorImg: 'images/kavitha.png', imgPath: 'images/why-dont-people-watch-the-wnba.png', link: '#/posts/why-dont-people-watch-the-wnba',
+                description: 'The WNBA is not without fans. With a viewership of 413,000, there is a large fan base invested in this league that truly enjoys watching these professional athletes play. I am personally not one of them, and I actually don’t know anyone who watches or follows the WNBA. I do, however, watch the NBA. And when comparing the NBA viewership of 1.46 million to a meagre 413,000, the WNBA seems like a joke...', },
             {title: 'A New Beginning: Dwight Howard', author: 'Sukeesan Krishnabagavan', authorImg: 'images/sukee.jpg', imgPath: 'images/a-new-beginning-dwight-howard.jpg', link: '#/posts/a-new-beginning-dwight-howard',
                 description: 'Dwight Howard was once a household name and now he is being overlooked, with teams focusing on other stars, such as Durant, Horford, etc. He was once a franchise player, as teams fought each other to try and reel him in. However, thinking in hindsight, it feels like that was ages ago...', },
             {title: 'Parity, What Nba Parity?', author: 'Bman', authorImg: 'images/bman.png', imgPath: 'images/parity-what-nba-parity.jpg', link: '#/posts/parity-what-nba-parity',
