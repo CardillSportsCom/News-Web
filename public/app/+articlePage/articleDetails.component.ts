@@ -4,12 +4,13 @@ import { SafeStyle, DomSanitizationService } from '@angular/platform-browser'
 import { ICustomer, IArticleData } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
 import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
+import { SemanticRatingComponent } from './ratings.component';
 
 @Component({
   moduleId: module.id,
   selector: 'article-details',
   templateUrl: 'articleDetails.component.html',
-  directives: [ ROUTER_DIRECTIVES ],
+  directives: [ ROUTER_DIRECTIVES, SemanticRatingComponent ],
   pipes: [ CapitalizePipe ]
 })
 export class ArticleDetailsComponent implements OnInit {
