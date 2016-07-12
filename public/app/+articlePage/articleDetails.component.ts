@@ -34,4 +34,8 @@ export class ArticleDetailsComponent implements OnInit {
       });
       
   }
+
+  onReceiveRating(rating: number) {
+    console.log(rating);
+  }
 }

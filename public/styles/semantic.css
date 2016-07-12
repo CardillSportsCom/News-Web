@@ -32933,14 +32933,14 @@ a.ui.nag {
 
 .ui.rating .icon {
   background: transparent;
-  color: rgba(0, 0, 0, 0.15);
+  color: #828282;
 }
 
 /* Active Icon */
 
 .ui.rating .active.icon {
   background: transparent;
-  color: rgba(0, 0, 0, 0.85);
+  color: #b0b34e;
 }
 
 /* Selected Icon */
@@ -32948,7 +32948,7 @@ a.ui.nag {
 .ui.rating .icon.selected,
 .ui.rating .icon.selected.active {
   background: transparent;
-  color: rgba(0, 0, 0, 0.87);
+  color: #b0b34e
 }
 
 /*-------------------

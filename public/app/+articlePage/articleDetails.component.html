@@ -2,9 +2,8 @@
 
         <header class="jumbotron" [style.background-image]="articleImage">
             <div class="article-header">
-                <div class="ui massive start rating" #rating></div>
                 <h1>{{article.Name}}</h1>
-                <sm-rating (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
+                
                 <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
             </div> 
         </header>
@@ -21,46 +20,42 @@
                   </div>
                 </div>
             </div>
+            
+            <div class="ui two column centered grid">
+                <div class="column">
+                    <sm-rating (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-            <div class="ui centered comments">            
-                <h3 class="ui dividing header">Comments</h3>
-                <div class="comment">
-        
-                    <div class="content">
-                    <b>Jason</b>
-                    <div class="metadata">
-                        <span class="date">Today at 5:42PM</span>
-                    </div>
-                    <div class="text">
-                        Sick article!
-                    </div>
+                    <div class="ui centered comments">            
+                        <h3 class="ui dividing header">Comments</h3>
+                        
+                        <div class="comment content" *ngFor="let comment of article.Comments;">
+                            <b>{{comment.author}}</b>
+                            <div class="metadata">
+                                <span class="date">{{comment.Date}}</span>
+                            </div>
+                            <div class="text">
+                                {{comment.text}}
+                            </div>
+
+                        </div>
+                        
+                        <form class="ui reply form">
+                            <div class="field">
+                                <textarea></textarea>
+                            </div> 
+                            <div class="left floated column ui blue labeled submit icon button">                            
+                                    <i class="icon edit"></i> Add Reply                        
+                                </div>
+                        </form>
+                        
+                                
                     </div>
                 </div>
-                <div class="comment">
-                    <div class="content">
-                    <b>Anonymous</b>
-                    <div class="metadata">
-                        <span class="date">Yesterday at 12:30AM</span>
-                    </div>
-                    <div class="text">
-                        <p>You suck at fantasy!</p>
-                    </div>
-                    
-                    </div>
-                </div>
-                <form class="ui reply form">
-                    <div class="field">
-                    <textarea></textarea>
-                    </div>
-                    <div class="ui blue labeled submit icon button">
-                    <i class="icon edit"></i> Add Reply
-                    </div>
-                </form>
-            </div>
-            </div>
             </div>
         </article>
     

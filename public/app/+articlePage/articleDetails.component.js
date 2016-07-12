@@ -34,6 +34,9 @@ var ArticleDetailsComponent = (function () {
             });
         });
     };
+    ArticleDetailsComponent.prototype.onReceiveRating = function (rating) {
+        console.log(rating);
+    };
     ArticleDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
