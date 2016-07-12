@@ -21,11 +21,13 @@
                 </div>
             </div>
             
-            <div class="ui two column centered grid">
-                <div class="column">
-                    <sm-rating (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                     <sm-rating (onRate)="onReceiveRating($event)" [maxRating]="5"></sm-rating>
                 </div>
             </div>
+
+            <br>
 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -34,12 +36,12 @@
                         <h3 class="ui dividing header">Comments</h3>
                         
                         <div class="comment content" *ngFor="let comment of article.Comments;">
-                            <b>{{comment.author}}</b>
+                            <b>{{comment.Name}}</b>
                             <div class="metadata">
                                 <span class="date">{{comment.Date}}</span>
                             </div>
                             <div class="text">
-                                {{comment.text}}
+                                {{comment.Text}}
                             </div>
 
                         </div>
