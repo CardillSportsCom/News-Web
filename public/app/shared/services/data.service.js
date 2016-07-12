@@ -20,6 +20,28 @@ var DataService = (function () {
         this._cardillBase = 'http://cardillsports.gear.host/';
         this._baseUrl = '';
     }
+    DataService.prototype.postRating = function (id, rating) {
+        console.log("HERE");
+        var body = "id=" + id + "&rating=" + rating;
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
+        //let options = new RequestOptions({ headers: headers });
+        console.log(body);
+        return this.http.put(this._baseUrl + 'api/article/' + id + "/" + rating, {})
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    DataService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body.data || {};
+    };
+    DataService.prototype.handleError = function (error) {
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable_1.Observable.throw(errMsg);
+    };
     DataService.prototype.getAllArticles = function () {
         var _this = this;
         if (!this.allArticles) {

@@ -5,6 +5,7 @@ import { ICustomer, IArticleData } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
 import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
 import { SemanticRatingComponent } from './ratings.component';
+import { Http, Response } from '@angular/http';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +20,7 @@ export class ArticleDetailsComponent implements OnInit {
   article: IArticleData;
   foo: string = "images/male.png";
   articleImage: SafeStyle;
-  red: string = "red";
+  articleRating: number = 0;
   constructor(private router: Router, private sanitizer: DomSanitizationService, private route: ActivatedRoute, private dataService: DataService) { }
 
   
@@ -30,12 +31,17 @@ export class ArticleDetailsComponent implements OnInit {
         this.dataService.getArticle(id).subscribe((article: IArticleData) => {
           this.article = article;
           this.articleImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + this.article.ImageLink);
+          
+          this.articleRating = Math.round(article.Rating); 
         });
       });
       
   }
 
   onReceiveRating(rating: number) {
-    console.log(rating);
+    this.dataService.postRating(this.article.ID, rating)
+      .subscribe((response: Response) => {
+          console.log(response);
+      });
   }
 }

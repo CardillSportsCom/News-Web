@@ -21,7 +21,7 @@ var ArticleDetailsComponent = (function () {
         this.route = route;
         this.dataService = dataService;
         this.foo = "images/male.png";
-        this.red = "red";
+        this.articleRating = 0;
     }
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -31,11 +31,19 @@ var ArticleDetailsComponent = (function () {
             _this.dataService.getArticle(id).subscribe(function (article) {
                 _this.article = article;
                 _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.article.ImageLink);
+                _this.articleRating = Math.round(article.Rating);
             });
         });
     };
     ArticleDetailsComponent.prototype.onReceiveRating = function (rating) {
-        console.log(rating);
+        console.log(rating + "DSF_");
+        this.dataService.postRating(this.article.ID, rating)
+            .subscribe(function (response) {
+            console.log(response);
+        }, function (err) {
+            console.log('Error: %s', err);
+        });
+        ;
     };
     ArticleDetailsComponent = __decorate([
         core_1.Component({
