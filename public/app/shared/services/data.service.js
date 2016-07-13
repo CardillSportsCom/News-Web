@@ -21,12 +21,12 @@ var DataService = (function () {
         this._baseUrl = '';
     }
     DataService.prototype.postRating = function (id, rating) {
-        console.log("HERE");
-        var body = "id=" + id + "&rating=" + rating;
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
-        console.log(body);
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/" + rating, {})
+        return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    DataService.prototype.postComment = function (id, comment) {
+        return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
             .map(this.extractData)
             .catch(this.handleError);
     };

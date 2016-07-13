@@ -21,6 +21,8 @@ export class ArticleDetailsComponent implements OnInit {
   foo: string = "images/male.png";
   articleImage: SafeStyle;
   articleRating: number = 0;
+  latestComment: string;
+  
   constructor(private router: Router, private sanitizer: DomSanitizationService, private route: ActivatedRoute, private dataService: DataService) { }
 
   
@@ -40,6 +42,13 @@ export class ArticleDetailsComponent implements OnInit {
 
   onReceiveRating(rating: number) {
     this.dataService.postRating(this.article.ID, rating)
+      .subscribe((response: Response) => {
+          console.log(response);
+      });
+  }
+
+  clicked() {
+    this.dataService.postComment(this.article.ID, comment)
       .subscribe((response: Response) => {
           console.log(response);
       });

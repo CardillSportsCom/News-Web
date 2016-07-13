@@ -36,14 +36,13 @@ var ArticleDetailsComponent = (function () {
         });
     };
     ArticleDetailsComponent.prototype.onReceiveRating = function (rating) {
-        console.log(rating + "DSF_");
         this.dataService.postRating(this.article.ID, rating)
             .subscribe(function (response) {
             console.log(response);
-        }, function (err) {
-            console.log('Error: %s', err);
         });
-        ;
+    };
+    ArticleDetailsComponent.prototype.clicked = function () {
+        console.log("HEHEHEHEHEHE");
     };
     ArticleDetailsComponent = __decorate([
         core_1.Component({

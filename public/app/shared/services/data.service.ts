@@ -22,7 +22,13 @@ export class DataService {
     constructor(private http: Http) { }
     
     postRating(id: number, rating: number) : Observable<Response> {
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/" + rating, {})
+        return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
+                    .map(this.extractData)
+                    .catch(this.handleError);        
+    }
+
+    postComment(id: number, comment: string) : Observable<Response> {
+        return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
                     .map(this.extractData)
                     .catch(this.handleError);        
     }

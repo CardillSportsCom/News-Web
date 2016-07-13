@@ -8,7 +8,8 @@ var ArticleSchema = new mongoose.Schema({
     ImamgeLink: String,
     DateCreated: Date,
     Rating: Number,
-    TotalRatings: Number
+    TotalRatings: Number,
+    Comments: []
 });
 
 var ArticleModel = mongoose.model('Article', ArticleSchema);
@@ -39,7 +40,7 @@ router.get('/article/:id', function(req, res, next) {
     });
 });
 
-router.put('/article/:id/:rating', function(req, res, next) {
+router.put('/article/:id/rating/:rating', function(req, res, next) {
     var id = req.params.id;
     var rating = req.params.rating;
 
@@ -52,6 +53,27 @@ router.put('/article/:id/:rating', function(req, res, next) {
         // Increment 
         article.TotalRatings += 1;
         
+        article.save(
+                function(err) {
+                    if (err) res.send(err);
+                    res.json({ message: 'Article updated!' });
+                });
+    });
+});
+
+router.put('/article/:id/comment/:comment', function(req, res, next) {
+    var id = req.params.id;
+    var comment = req.params.comment;
+
+    ArticleModel.findOne({ID: id}, function(err, article){
+        if(err){ return next(err); }
+        
+        var commentObj = {"Name": "Anonymous",
+                            "Text": comment,
+                            "Date": new Date}
+
+        article.Comments.push(commentObj);
+
         article.save(
                 function(err) {
                     if (err) res.send(err);
