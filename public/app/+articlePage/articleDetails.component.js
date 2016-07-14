@@ -50,6 +50,9 @@ var ArticleDetailsComponent = (function () {
             _this.latestComment = "";
         });
     };
+    ArticleDetailsComponent.prototype.stringAsDate = function (date){
+        return new Date(date);
+    }
     ArticleDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

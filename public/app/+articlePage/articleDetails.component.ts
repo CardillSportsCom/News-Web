@@ -55,4 +55,7 @@ export class ArticleDetailsComponent implements OnInit {
           this.latestComment = "";
       });
   }
+  stringAsDate(dateStr:string){
+    return new Date(dateStr);
+  }
 }

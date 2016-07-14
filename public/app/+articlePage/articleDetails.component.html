@@ -38,7 +38,7 @@
                         <div class="comment content" *ngFor="let comment of article.Comments;">
                             <b>{{comment.Name}}</b>
                             <div class="metadata">
-                                <span class="date">{{comment.Date}}</span>
+                                <span class="date" >{{stringAsDate(comment.Date) | date:'MMM dd, yyyy HH:mm'}}</span>
                             </div>
                             <div class="text">
                                 {{comment.Text}}
