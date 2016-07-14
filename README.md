@@ -10,9 +10,9 @@ You can install and setup mongodb locally to use a local instance of the databse
 
 Used with node.js. Express is already included in the project repo as a node_module, you shouldn't have to install it yourself.
 
-#### AngularJS -Front-end web framework
+#### Angular2 -Front-end web framework
 
-You can find the angular file in public/js/angular.min.js. No extra installation should be necessary.
+Angular2 is provided through node_modules. No extra installation should be necessary.
 
 #### Node.js - Server-side framework
 
@@ -56,7 +56,3 @@ All views for this application are found in the views folder. We are using the e
 
 From the server perspective we only have two routes, default and api. The whole site is hosted on the default route, while the api route describes the different REST endpoints that our server exposes. Any client can hit these endpoints (ie. Google Chrome Postman, Terminal `curl` command, our Angular client code).
 Within the default route, there are several different 'states' in our single-page web application (An article, home, about us, etc...). Those invididual states are defined using the Angular module 'state-provider' in the client code (public/js/cardillApp.js) 
-
-#### cardillApp.js	
-
-This file contains the Angular 'state-provider' and the different valid states of our application. Here we declared that any unrecognized sub URL should direct to the home page.

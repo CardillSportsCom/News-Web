@@ -1,0 +1,11 @@
+<!-- Banner -->        
+<div *ngIf="bannerImage  && article" id="banner" [style.background-image]="bannerImage">          
+    <h2>{{article.Name}}</h2>
+    <p>
+        <img class="img-responsive featured-author-img circular " src="images/{{article.Owner.userPicture}}">
+        {{article.Owner.firstName}} {{article.Owner.lastName}}
+    </p>
+    <ul class="actions">
+        <li><a [routerLink]="['/articles',article.ID]" class="button big special">Read More</a></li>
+    </ul>
+</div>

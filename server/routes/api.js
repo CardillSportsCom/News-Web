@@ -1,51 +1,84 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var requestController = require('requestController');
 
-var PlayerRankingSchema = new mongoose.Schema({
-    1: Object,
-    2: Object,
-    3: Object,
-    4: Object,
-    5: Object,
-    6: Object,
-    7: Object,
-    8: Object,
-    9: Object,
-    10: Object,
-    11: Object,
-    12: Object,
-    submitter: String
+var ArticleSchema = new mongoose.Schema({
+    ID: Number,
+    Name: String,
+    ImamgeLink: String,
+    DateCreated: Date,
+    Rating: Number,
+    TotalRatings: Number,
+    Comments: []
 });
 
+var ArticleModel = mongoose.model('Article', ArticleSchema);
 
-var PlayerRanking = mongoose.model('PlayerRanking', PlayerRankingSchema);
+router.get('/articles', function(req, res, next) {
+    ArticleModel.find({}).sort({DateCreated: 'descending'}).exec(
+        function(err, articles){
+            if(err){ return next(err); }
+            res.json(articles);
+    });
+});
 
+router.get('/articles/:limit', function(req, res, next) {
+    var limit = req.params.limit;
+    ArticleModel.find({}).sort({DateCreated: 'descending'}).limit(limit).exec(
+        function(err, articles){
+            if(err){ return next(err); }
+            res.json(articles);
+    });
+});
 
-router.get('/rankings', function(req, res, next) {
-    PlayerRanking.find(function(err, playerRanking){
+router.get('/article/:id', function(req, res, next) {
+    var id = req.params.id;
+    ArticleModel.findOne({ID: id}, function(err, article){
         if(err){ return next(err); }
-        res.json(playerRanking);
+        console.log(article.DateCreated);
+        res.json(article);
     });
 });
 
-router.post('/ranking', function(req, res, next) {
+router.put('/article/:id/rating/:rating', function(req, res, next) {
+    var id = req.params.id;
+    var rating = req.params.rating;
 
-    var playerRanking = new PlayerRanking(req.body);	
-    
-    playerRanking.save(function(err, playerRanking){
-        if(err){ return next(err); 
-    }
-    
-    res.json(playerRanking);
+    ArticleModel.findOne({ID: id}, function(err, article){
+        if(err){ return next(err); }
+        // Calculate new average
+        article.Rating =    ((parseFloat(article.Rating) * parseFloat(article.TotalRatings)) + parseFloat(rating)) / 
+                            (parseFloat(article.TotalRatings) + 1);
+                
+        // Increment 
+        article.TotalRatings += 1;
+        
+        article.save(
+                function(err) {
+                    if (err) res.send(err);
+                    res.json({ message: 'Article updated!' });
+                });
     });
 });
 
+router.put('/article/:id/comment/:comment', function(req, res, next) {
+    var id = req.params.id;
+    var comment = req.params.comment;
 
-router.get('/reddit2', function(req, res, next) {  
-    requestController.getSampleData(function(result) {        
-        res.json(result);
+    ArticleModel.findOne({ID: id}, function(err, article){
+        if(err){ return next(err); }
+        
+        var commentObj = {"Name": "Anonymous",
+                            "Text": comment,
+                            "Date": new Date}
+
+        article.Comments.push(commentObj);
+
+        article.save(
+                function(err) {
+                    if (err) res.send(err);
+                    res.json(commentObj);
+                });
     });
 });
 
@@ -55,7 +88,6 @@ var getRedditPosts = function(req, res, next) {
     if (Object.keys(req.params).length !== 0) {
         pathString = pathString + "&after=" + req.params.after;
     }
-    
 
     var options = {
         host: 'www.reddit.com',
@@ -66,10 +98,10 @@ var getRedditPosts = function(req, res, next) {
         }
     };
 
-    requestController.getJSON(options, function(statusCode, result) {    
+   /* requestController.getJSON(options, function(statusCode, result) {    
         res.statusCode = statusCode;
         res.json(result);
-    });
+    });*/
 };
 
 router.get('/reddit/:after', getRedditPosts);

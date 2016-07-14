@@ -1,0 +1,71 @@
+<div *ngIf="article">
+
+        <header class="jumbotron" [style.background-image]="articleImage">
+            <div class="article-header">
+                <h1>{{article.Name}}</h1>
+                
+                <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
+            </div> 
+        </header>
+
+        <article>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div *ngFor="let item of article.ArticleItems;">
+                    <div *ngIf="item.Type == 'Text'">
+                      <!--<p class="post-text">{{item.Paragraph}}</p> -->
+                      <p class="post-text" [innerHTML]="item.Paragraph"></p>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                     <sm-rating (onRate)="onReceiveRating($event)" [initialRating]="articleRating" [maxRating]="5"></sm-rating>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="ui centered comments">            
+                        <h3 class="ui dividing header">Comments</h3>
+                        
+                        <div class="comment content" *ngFor="let comment of article.Comments;">
+                            <b>{{comment.Name}}</b>
+                            <div class="metadata">
+                                <span class="date">{{comment.Date}}</span>
+                            </div>
+                            <div class="text">
+                                {{comment.Text}}
+                            </div>
+
+                        </div>
+                        
+                         
+
+                        <form (ngSubmit)="onSubmit(f.value)" class="ui reply form">
+                            <div class="field">
+                                <textarea #f name="first" [(ngModel)]="latestComment"></textarea>
+                            </div> 
+                            <button type="submit" class="left floated column ui blue labeled submit icon button">                            
+                                    <i class="icon edit"></i> Add Reply                        
+                            </button>
+                        </form>
+                        
+                                
+                    </div>
+                </div>
+            </div>
+        </article>
+    
+      
+</div>   
+<div *ngIf="!article" class="row">
+   No article found
+</div>  
+

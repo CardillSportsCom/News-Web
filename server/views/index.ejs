@@ -1,84 +1,76 @@
-<!DOCTYPE HTML>
-<!--
-	Retrospect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Cardill Sports</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="/css/cardill-post.css" />
-		<link rel="stylesheet" href="/css/main.css" />			
-		<link rel="stylesheet" href="/css/cardill-features.css" />
-		<link rel="stylesheet" href="/css/cardill-reddit.css" />
+<head>
+    <base href="/">
+    <title>Cardill Sports</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Angular 2 JumpStart">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css' />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link href="styles/semantic.css" rel="stylesheet" />
+    <link href="styles/cardill-features.css" rel="stylesheet" />
+    <link href="styles/cardill-post.css" rel="stylesheet" />
+    
+    
+    <!-- Polyfill(s) for older browsers -->
+    <script src="js/shim.min.js"></script>
 
-		<link rel="stylesheet" href="/css/hover.css" />    		 
-		
-		<link href="css/scrolling-nav.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    
+    <script src="js/semantic.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
 
-        <link rel="stylesheet" href="css/gallery2.css">
-        <link rel="stylesheet" href="css/angular-material.css">
-		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
-	</head>
+    <script src="js/zone.js"></script>
+    <script src="js/Reflect.js"></script>
+    <script src="js/system.src.js"></script>
 
-	<body ng-app="cardillApp" id="page-top" class="landing cardillBody">
-		
-		<div ng-include="'pages/navbar-top.html'"></div>
+	<!-- remove for bundle usage -->
+	<script src="systemjs.config.js"></script>
+	<script>
+		System.import('app').catch(function(err){ console.error(err); });
+	</script>
+	<!-- remove for bundle usage -->
 
-		<!-- ui routes hook -->
-    	<ui-view></ui-view>	
+</head>
+<body>
 
-    	<div ng-include="'pages/navbar-bottom.html'"></div>
+    <main class="container">
+        <app-container>
+            
+                <div class="ui active dimmer">
+                    <div class="ui massive text loader">Loading</div>
+                </div>
+                <p></p>
+                <p></p>
+                <p></p>
+        </app-container>
+        <br /><br />
+    </main>
 
-		<!-- Scripts -->
-		<script src="/js/jquery.js"></script>
-				
-	    <!-- Bootstrap Core JavaScript -->
-	    <script src="js/bootstrap.min.js"></script>
-
-	    <script src="js/angular.min.js"></script>
-	    
-	    <!-- Sortable.js -->
-	    <script src="https://rubaxa.github.io/Sortable/Sortable.js"></script>
-
-	    <!-- ng-sortable.js -->
-	    <script src="https://rubaxa.github.io/Sortable/ng-sortable.js"></script>
-
-	    <script src="js/angular-ui-router.min.js"></script>
-	    
-	    <script src="js/cardillApp.js"></script>
-	    <script src="pages/home/articleFactory.js"></script>
-	    <script src="pages/home/homeController.js"></script>
-	    <script src="pages/draft/rankingsFactory.js"></script>
-	    <script src="pages/draft/draft-retro/playerRankFactory.js"></script>
-	    <script src="pages/draft/draft-retro/rosterFactory.js"></script>
-	    <script src="pages/draft/draft-retro/draftRetroController.js"></script>
-	    <script src="pages/draft/draft-results/draftResultsController.js"></script>
-	    	    
-
-		<script src="pages/reddit/redditFactory.js"></script>
-	    <script src="pages/reddit/redditController.js"></script>
-
-	     <!-- Scrolling Nav JavaScript -->
-    	<script src="js/jquery.easing.min.js"></script>
-    	<script src="js/scrolling-nav.js"></script>
-
-    	<script src="js//angulargrid.min.js"></script>    	
-		
-		<script src='js/angular-animate.js'></script>
-		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js'></script>
-		<script src='js/angular-aria.js'></script>
-		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js'></script>
-		<script src='js/angular-material.js'></script>
-		<script src='https://cdn.rawgit.com/sroze/ngInfiniteScroll/master/build/ng-infinite-scroll.js'></script>
-		
-
-        
-
-	</body>
+    <footer>
+    
+        <div class="navbar-inner footer">
+            <div class="container">
+                <footer>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Created by Cardill Sports
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    
+    </footer>
+    
+	<!-- add for bundle usage 
+	<script src="dist/bundle.min.js"></script> -->
+	<!-- add for bundle usage -->
+    
+</body>
 </html>
