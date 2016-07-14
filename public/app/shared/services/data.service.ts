@@ -6,7 +6,7 @@ import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/map'; 
 import 'rxjs/add/operator/catch';
 
-import { ICustomer, IOrder, IState, 
+import { ICustomer, IOrder, IState, IComment,
     IAllArticlesResponse, IArticleData, ISingleArticlesResponse } from '../interfaces';
 
 @Injectable()
@@ -18,24 +18,26 @@ export class DataService {
     states: IState[];
     allArticles: IArticleData[];
     homeArticles: IArticleData[];
+    lastPostedComment: IComment;
 
     constructor(private http: Http) { }
     
     postRating(id: number, rating: number) : Observable<Response> {
         return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
-                    .map(this.extractData)
+                    .map((res: Response) => {
+                        let body = res.json();
+                        return body.data || { };
+                    })
                     .catch(this.handleError);        
     }
 
-    postComment(id: number, comment: string) : Observable<Response> {
+    postComment(id: number, comment: string) : Observable<IComment> {
         return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
-                    .map(this.extractData)
+                    .map((res: Response) => {
+                        this.lastPostedComment = res.json();
+                        return this.lastPostedComment;
+                    })
                     .catch(this.handleError);        
-    }
-
-    private extractData(res: Response) {
-        let body = res.json();
-        return body.data || { };
     }
 
     private handleError (error: any) {

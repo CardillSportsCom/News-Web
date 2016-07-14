@@ -40,6 +40,13 @@ export interface IArticleData {
     ImageLink: string;
     Owner: IOwner;
     ArticleItems: IArticleItem[];
+    Comments: IComment[];
+}
+
+export interface IComment {
+    Name: string;
+    Text: string;
+    Date: Date;
 }
 
 export interface IOwner {

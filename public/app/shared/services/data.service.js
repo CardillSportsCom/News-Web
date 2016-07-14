@@ -22,17 +22,22 @@ var DataService = (function () {
     }
     DataService.prototype.postRating = function (id, rating) {
         return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
-            .map(this.extractData)
+            .map(function (res) {
+            var body = res.json();
+            return body.data || {};
+        })
             .catch(this.handleError);
     };
     DataService.prototype.postComment = function (id, comment) {
+        var _this = this;
         return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
-            .map(this.extractData)
+            .map(function (res) {
+            _this.lastPostedComment = res.json();
+            return _this.lastPostedComment;
+        })
             .catch(this.handleError);
     };
     DataService.prototype.extractData = function (res) {
-        var body = res.json();
-        return body.data || {};
     };
     DataService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure

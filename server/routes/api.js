@@ -77,7 +77,7 @@ router.put('/article/:id/comment/:comment', function(req, res, next) {
         article.save(
                 function(err) {
                     if (err) res.send(err);
-                    res.json({ message: 'Article updated!' });
+                    res.json(commentObj);
                 });
     });
 });

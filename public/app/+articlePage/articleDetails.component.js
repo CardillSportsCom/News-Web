@@ -22,6 +22,8 @@ var ArticleDetailsComponent = (function () {
         this.dataService = dataService;
         this.foo = "images/male.png";
         this.articleRating = 0;
+        this.latestComment = "";
+        this.red = "dfsdfsd";
     }
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -41,8 +43,13 @@ var ArticleDetailsComponent = (function () {
             console.log(response);
         });
     };
-    ArticleDetailsComponent.prototype.clicked = function () {
-        console.log("HEHEHEHEHEHE");
+    ArticleDetailsComponent.prototype.onSubmit = function (comment) {
+        var _this = this;
+        this.dataService.postComment(this.article.ID, comment)
+            .subscribe(function (postedComment) {
+            _this.article.Comments.push(postedComment);
+            _this.latestComment = "";
+        });
     };
     ArticleDetailsComponent = __decorate([
         core_1.Component({
