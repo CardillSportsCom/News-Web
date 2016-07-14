@@ -23,7 +23,6 @@ var ArticleDetailsComponent = (function () {
         this.foo = "images/male.png";
         this.articleRating = 0;
         this.latestComment = "";
-        this.red = "dfsdfsd";
     }
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
