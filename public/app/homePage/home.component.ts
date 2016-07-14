@@ -5,7 +5,7 @@ import { FeaturedArticleComponent } from './featuredArticle/featuredArticle.comp
 import { DataService } from '../shared/services/data.service';
 import { ArticleCardsComponent } from '../articlesPage/articleCards.component';
 import { DomSanitizationService, SafeStyle} from '@angular/platform-browser';
-import { ICustomer, IOrder, IArticleData, IAllArticlesResponse } from '../shared/interfaces';
+import { IOrder, IArticleData, IAllArticlesResponse } from '../shared/interfaces';
 
 @Component({ 
   moduleId: module.id,
@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService, private sanitizer: DomSanitizationService) { }
   
   ngOnInit() {
-    this.title = 'Customers';
 
     this.dataService.getHomePageArticles(this.numberOfArticles)
       .subscribe((articles: IArticleData[]) => {

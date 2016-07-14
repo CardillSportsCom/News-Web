@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { SafeStyle, DomSanitizationService } from '@angular/platform-browser'
-import { ICustomer, IArticleData, IComment } from '../shared/interfaces';
+import { IArticleData, IComment } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
 import { CapitalizePipe } from '../shared/pipes/capitalize.pipe';
 import { SemanticRatingComponent } from './ratings.component';
