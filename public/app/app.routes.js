@@ -7,7 +7,7 @@ var articleDetails_component_1 = require('./+articlePage/articleDetails.componen
 exports.App_Routes = [
     { path: '', component: home_component_1.HomeComponent },
     { path: 'articles', component: articlesPage_component_1.ArticlesPageComponent },
-    { path: 'articles/:id', component: articleDetails_component_1.ArticleDetailsComponent }
+    { path: 'article/:id', component: articleDetails_component_1.ArticleDetailsComponent }
 ];
 exports.APP_ROUTER_PROVIDERS = [
     router_1.provideRouter(exports.App_Routes),

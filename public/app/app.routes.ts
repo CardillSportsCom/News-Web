@@ -8,7 +8,7 @@ import { ArticleDetailsComponent } from './+articlePage/articleDetails.component
 export const App_Routes: RouterConfig = [
   { path: '', component: HomeComponent },
   { path: 'articles', component: ArticlesPageComponent } ,
-  { path: 'articles/:id', component: ArticleDetailsComponent}
+  { path: 'article/:id', component: ArticleDetailsComponent}
 ];
 
 export const APP_ROUTER_PROVIDERS = [

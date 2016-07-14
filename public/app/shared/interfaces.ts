@@ -5,6 +5,7 @@ export interface IArticleData {
     Owner: IOwner;
     ArticleItems: IArticleItem[];
     Comments: IComment[];
+    Rating: number;
 }
 
 export interface IComment {

@@ -6,6 +6,6 @@
         {{article.Owner.firstName}} {{article.Owner.lastName}}
     </p>
     <ul class="actions">
-        <li><a [routerLink]="['/articles',article.ID]" class="button big special">Read More</a></li>
+        <li><a [routerLink]="['/article',article._id.toString()]" class="button big special">Read More</a></li>
     </ul>
 </div>

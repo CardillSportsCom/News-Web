@@ -37,14 +37,6 @@ var DataService = (function () {
         })
             .catch(this.handleError);
     };
-    DataService.prototype.handleError = function (error) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        var errMsg = (error.message) ? error.message :
-            error.status ? error.status + " - " + error.statusText : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable_1.Observable.throw(errMsg);
-    };
     DataService.prototype.getAllArticles = function () {
         var _this = this;
         if (!this.allArticles) {
@@ -75,21 +67,6 @@ var DataService = (function () {
             return this.createObservable(this.homeArticles);
         }
     };
-    DataService.prototype.getCustomers = function () {
-        var _this = this;
-        if (!this.customers) {
-            return this.http.get(this._baseUrl + 'customers.json')
-                .map(function (res) {
-                _this.customers = res.json();
-                return _this.customers;
-            })
-                .catch(this.handleError);
-        }
-        else {
-            //return cached data
-            return this.createObservable(this.customers);
-        }
-    };
     DataService.prototype.getArticle = function (id) {
         return this.http.get(this._baseUrl + 'api/article/' + id)
             .map(function (res) {
@@ -98,91 +75,11 @@ var DataService = (function () {
         })
             .catch(this.handleError);
     };
-    DataService.prototype.getCustomer = function (id) {
-        var _this = this;
-        if (this.customers) {
-            //filter using cached data
-            return this.findCustomerObservable(id);
-        }
-        else {
-            //Query the existing customers to find the target customer
-            return Observable_1.Observable.create(function (observer) {
-                _this.getCustomers().subscribe(function (customers) {
-                    _this.customers = customers;
-                    var cust = _this.filterCustomers(id);
-                    observer.next(cust);
-                    observer.complete();
-                });
-            })
-                .catch(this.handleError);
-        }
-    };
-    DataService.prototype.getOrders = function (id) {
-        var _this = this;
-        return this.http.get(this._baseUrl + 'orders.json')
-            .map(function (res) {
-            _this.orders = res.json();
-            return _this.orders.filter(function (order) { return order.customerId === id; });
-        })
-            .catch(this.handleError);
-    };
-    DataService.prototype.updateCustomer = function (customer) {
-        var _this = this;
-        return Observable_1.Observable.create(function (observer) {
-            _this.customers.forEach(function (cust, index) {
-                if (cust.id === customer.id) {
-                    var state = _this.filterStates(customer.state.abbreviation);
-                    customer.state.abbreviation = state.abbreviation;
-                    customer.state.name = state.name;
-                    _this.customers[index] = customer;
-                }
-            });
-            observer.next(true);
-            observer.complete();
-        });
-    };
-    DataService.prototype.getStates = function () {
-        var _this = this;
-        if (this.states) {
-            return Observable_1.Observable.create(function (observer) {
-                observer.next(_this.states);
-                observer.complete();
-            });
-        }
-        else {
-            return this.http.get(this._baseUrl + 'states.json').map(function (response) {
-                _this.states = response.json();
-                return _this.states;
-            })
-                .catch(this.handleError);
-        }
-    };
-    DataService.prototype.findCustomerObservable = function (id) {
-        return this.createObservable(this.filterCustomers(id));
-    };
-    DataService.prototype.findArticleObservable = function (id) {
-        return this.createObservable(this.filterArticles(id));
-    };
-    DataService.prototype.filterCustomers = function (id) {
-        var custs = this.customers.filter(function (cust) { return cust.id === id; });
-        return (custs.length) ? custs[0] : null;
-    };
-    DataService.prototype.filterArticles = function (id) {
-        console.log("DFDFS");
-        var items = this.article.filter(function (item) { return item.ID === id; });
-        var res = (items.length) ? items[0] : null;
-        console.log(items);
-        return res;
-    };
     DataService.prototype.createObservable = function (data) {
         return Observable_1.Observable.create(function (observer) {
             observer.next(data);
             observer.complete();
         });
-    };
-    DataService.prototype.filterStates = function (stateAbbreviation) {
-        var filteredStates = this.states.filter(function (state) { return state.abbreviation === stateAbbreviation; });
-        return (filteredStates.length) ? filteredStates[0] : null;
     };
     DataService.prototype.handleError = function (error) {
         console.error(error);

@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var ArticleSchema = new mongoose.Schema({
+var Schema = mongoose.Schema;
+
+var ArticleSchema = new Schema({
     ID: Number,
     Name: String,
     ImamgeLink: String,
@@ -33,9 +35,8 @@ router.get('/articles/:limit', function(req, res, next) {
 
 router.get('/article/:id', function(req, res, next) {
     var id = req.params.id;
-    ArticleModel.findOne({ID: id}, function(err, article){
+    ArticleModel.findById(id, function(err, article){
         if(err){ return next(err); }
-        console.log(article.DateCreated);
         res.json(article);
     });
 });

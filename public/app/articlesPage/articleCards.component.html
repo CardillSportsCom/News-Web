@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div *ngIf="article.Type == 'Article'">
-                        <a [routerLink]="['/articles',article.ID]">
+                        <a [routerLink]="['/article',article._id.toString()]">
                             <div class="ui large image">
                                 <img src="images/{{article.ImageLink}}">
                             </div>

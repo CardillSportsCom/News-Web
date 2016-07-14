@@ -27,7 +27,7 @@ var ArticleDetailsComponent = (function () {
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            var id = +params['id']; // (+) converts string 'id' to a number
+            var id = params['id'];
             //TODO: chain observables
             _this.dataService.getArticle(id).subscribe(function (article) {
                 _this.article = article;

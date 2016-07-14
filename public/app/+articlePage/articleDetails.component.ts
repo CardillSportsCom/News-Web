@@ -18,6 +18,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   sub: any;
   article: IArticleData;
+  id:string;
   foo: string = "images/male.png";
   articleImage: SafeStyle;
   articleRating: number = 0;
@@ -28,7 +29,7 @@ export class ArticleDetailsComponent implements OnInit {
   
   ngOnInit() {
       this.sub = this.route.params.subscribe(params => {
-        let id = +params['id']; // (+) converts string 'id' to a number
+        this.id = params['id'];
         //TODO: chain observables
         this.dataService.getArticle(id).subscribe((article: IArticleData) => {
           this.article = article;
@@ -41,7 +42,7 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   onReceiveRating(rating: number) {
-    this.dataService.postRating(this.article.ID, rating)
+    this.dataService.postRating(this.id, rating)
       .subscribe((response: Response) => {
           console.log(response);
       });
@@ -49,7 +50,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   onSubmit(comment: any): void { 
     
-    this.dataService.postComment(this.article.ID, comment)
+    this.dataService.postComment(this.id, comment)
       .subscribe((postedComment: IComment) => {
           this.article.Comments.push(postedComment);
           this.latestComment = "";
