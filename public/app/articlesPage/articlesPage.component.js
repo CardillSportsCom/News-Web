@@ -17,14 +17,11 @@ var articleCards_component_1 = require('./articleCards.component');
 var ArticlesPageComponent = (function () {
     function ArticlesPageComponent(dataService) {
         this.dataService = dataService;
-        this.customers = [];
         this.filteredArticles = [];
         this.articles = [];
     }
     ArticlesPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.title = 'Customers';
-        this.filterText = 'Filter Customers:';
         this.dataService.getAllArticles()
             .subscribe(function (articles) {
             _this.articles = articles;
@@ -32,16 +29,14 @@ var ArticlesPageComponent = (function () {
         });
     };
     ArticlesPageComponent.prototype.filterChanged = function (data) {
-        //console.log(data);
-        console.log(this.articles[0]);
         if (data && this.articles) {
+            // Search thru all the properties for the data string
             data = data.toUpperCase();
             var props_1 = ['Name', 'Owner'];
             var filtered = this.articles.filter(function (item) {
                 var match = false;
                 for (var _i = 0, props_2 = props_1; _i < props_2.length; _i++) {
                     var prop = props_2[_i];
-                    //console.log(item[prop] + ' ' + item[prop].toUpperCase().indexOf(data));
                     if (prop == 'Name') {
                         if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
                             match = true;

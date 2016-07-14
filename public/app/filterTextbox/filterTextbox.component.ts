@@ -4,7 +4,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'filter-textbox',
   template: `
     <form>
-         <h4>Filter:</h4>
+         <h4><i class="icon search"></i>Search:</h4>
          <input type="text" name="filter"
                 [(ngModel)]="model.filter" 
                 (keyup)="filterChanged($event)"  />

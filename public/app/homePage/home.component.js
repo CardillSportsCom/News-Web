@@ -24,7 +24,6 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.title = 'Customers';
         this.dataService.getHomePageArticles(this.numberOfArticles)
             .subscribe(function (articles) {
             _this.featuredArticle = articles[0];

@@ -5,9 +5,6 @@ var home_component_1 = require('./homePage/home.component');
 var articlesPage_component_1 = require('./articlesPage/articlesPage.component');
 var articleDetails_component_1 = require('./+articlePage/articleDetails.component');
 exports.App_Routes = [
-    //...CustomersRoutes,
-    //...CustomerRoutes,
-    //...HomeRoutes,
     { path: '', component: home_component_1.HomeComponent },
     { path: 'articles', component: articlesPage_component_1.ArticlesPageComponent },
     { path: 'articles/:id', component: articleDetails_component_1.ArticleDetailsComponent }
