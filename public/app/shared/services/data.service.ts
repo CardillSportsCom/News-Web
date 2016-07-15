@@ -6,7 +6,7 @@ import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/map'; 
 import 'rxjs/add/operator/catch';
 
-import { IComment, IArticleData } from '../interfaces';
+import { IComment, IArticleData, ICreator } from '../interfaces';
 
 @Injectable()
 export class DataService {
@@ -15,6 +15,7 @@ export class DataService {
     allArticles: IArticleData[];
     homeArticles: IArticleData[];
     lastPostedComment: IComment;
+    allCreators: ICreator[];
 
     constructor(private http: Http) { }
     
@@ -48,6 +49,21 @@ export class DataService {
         else {
             //return cached data
             return this.createObservable(this.allArticles);
+        }
+    }
+
+    getAllCreators() : Observable<ICreator[]> {
+        if (!this.allCreators) {
+            return this.http.get(this._baseUrl + 'api/creators')
+                        .map((res: Response) => {
+                            this.allCreators = res.json();                        
+                            return this.allCreators;
+                        })
+                        .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.allCreators);
         }
     }
 

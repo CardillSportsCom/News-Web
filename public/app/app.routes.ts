@@ -3,12 +3,14 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
 
 import { HomeComponent } from './homePage/home.component';
 import { ArticlesPageComponent } from './articlesPage/articlesPage.component';
-import { ArticleDetailsComponent } from './+articlePage/articleDetails.component'
+import { ArticleDetailsComponent } from './+articlePage/articleDetails.component';
+import { AboutUsComponent } from './aboutUsPage/aboutUs.component';
 
 export const App_Routes: RouterConfig = [
   { path: '', component: HomeComponent },
   { path: 'articles', component: ArticlesPageComponent } ,
-  { path: 'article/:id', component: ArticleDetailsComponent}
+  { path: 'article/:id', component: ArticleDetailsComponent},
+  { path: 'about-us', component: AboutUsComponent}
 ];
 
 export const APP_ROUTER_PROVIDERS = [

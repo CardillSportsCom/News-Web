@@ -27,7 +27,7 @@ var ArticleDetailsComponent = (function () {
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            var id = params['id'];
+            _this.id = params['id'];
             //TODO: chain observables
             _this.dataService.getArticle(id).subscribe(function (article) {
                 _this.article = article;
@@ -37,14 +37,14 @@ var ArticleDetailsComponent = (function () {
         });
     };
     ArticleDetailsComponent.prototype.onReceiveRating = function (rating) {
-        this.dataService.postRating(this.article.ID, rating)
+        this.dataService.postRating(this.id, rating)
             .subscribe(function (response) {
             console.log(response);
         });
     };
     ArticleDetailsComponent.prototype.onSubmit = function (comment) {
         var _this = this;
-        this.dataService.postComment(this.article.ID, comment)
+        this.dataService.postComment(this.id, comment)
             .subscribe(function (postedComment) {
             _this.article.Comments.push(postedComment);
             _this.latestComment = "";

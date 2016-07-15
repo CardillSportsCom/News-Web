@@ -2,7 +2,19 @@ a:focus, a:hover {
     text-decoration: none;
 }
 h4 {
-    color: #51baa4
+    color: #51baa4;
+}
+
+h5 {
+    color: #51baa4;
+}
+
+h1 {
+    color: #51baa4;
+}
+
+.newspaper {
+    color:#51baa4;
 }
 
 

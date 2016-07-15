@@ -13,8 +13,14 @@ var ArticleSchema = new Schema({
     TotalRatings: Number,
     Comments: []
 });
-
 var ArticleModel = mongoose.model('Article', ArticleSchema);
+
+var CreatorSchema = new Schema ({
+    firstName: String,
+    lastName: String,
+    userPicture: String
+});
+var CreatorModel = mongoose.model('Creator', CreatorSchema);
 
 router.get('/articles', function(req, res, next) {
     ArticleModel.find({}).sort({DateCreated: 'descending'}).exec(
@@ -22,6 +28,20 @@ router.get('/articles', function(req, res, next) {
             if(err){ return next(err); }
             res.json(articles);
     });
+});
+
+router.get('/creators', function(req, res, next) {
+    CreatorModel.aggregate(
+        [   
+            { $unwind: "$articles" },
+            { $group : { _id : { firstName: "$firstName", lastName: "$lastName", userPicture:"$userPicture" }, 
+                            articleCount : { $sum : 1 } } },
+            { $sort : { articleCount : -1 } }
+        ],
+        function(err, creators) {
+            if(err){ return next(err); }
+            res.json(creators);
+        });
 });
 
 router.get('/articles/:limit', function(req, res, next) {

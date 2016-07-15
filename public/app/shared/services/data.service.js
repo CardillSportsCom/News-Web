@@ -52,6 +52,21 @@ var DataService = (function () {
             return this.createObservable(this.allArticles);
         }
     };
+    DataService.prototype.getAllCreators = function () {
+        var _this = this;
+        if (!this.allCreators) {
+            return this.http.get(this._baseUrl + 'api/creators')
+                .map(function (res) {
+                _this.allCreators = res.json();
+                return _this.allCreators;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.allCreators);
+        }
+    };
     DataService.prototype.getHomePageArticles = function (limit) {
         var _this = this;
         if (!this.homeArticles) {
