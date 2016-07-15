@@ -5,7 +5,7 @@ import { FeaturedArticleComponent } from './featuredArticle/featuredArticle.comp
 import { DataService } from '../shared/services/data.service';
 import { ArticleCardsComponent } from '../articlesPage/articleCards.component';
 import { DomSanitizationService, SafeStyle} from '@angular/platform-browser';
-import { IOrder, IArticleData, IAllArticlesResponse } from '../shared/interfaces';
+import { IArticleData } from '../shared/interfaces';
 
 @Component({ 
   moduleId: module.id,

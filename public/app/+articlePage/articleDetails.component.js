@@ -29,7 +29,7 @@ var ArticleDetailsComponent = (function () {
         this.sub = this.route.params.subscribe(function (params) {
             _this.id = params['id'];
             //TODO: chain observables
-            _this.dataService.getArticle(id).subscribe(function (article) {
+            _this.dataService.getArticle(_this.id).subscribe(function (article) {
                 _this.article = article;
                 _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.article.ImageLink);
                 _this.articleRating = Math.round(article.Rating);
@@ -50,9 +50,9 @@ var ArticleDetailsComponent = (function () {
             _this.latestComment = "";
         });
     };
-    ArticleDetailsComponent.prototype.stringAsDate = function (date){
-        return new Date(date);
-    }
+    ArticleDetailsComponent.prototype.stringAsDate = function (dateStr) {
+        return new Date(dateStr);
+    };
     ArticleDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

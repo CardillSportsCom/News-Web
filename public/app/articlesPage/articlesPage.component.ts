@@ -5,7 +5,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { DataService } from '../shared/services/data.service';
 import { FilterTextboxComponent } from '../filterTextbox/filterTextbox.component';
 import { ArticleCardsComponent } from './articleCards.component';
-import { IOrder, IArticleData, IAllArticlesResponse } from '../shared/interfaces';
+import { IArticleData} from '../shared/interfaces';
 
 @Component({ 
   moduleId: module.id,

@@ -31,7 +31,7 @@ export class ArticleDetailsComponent implements OnInit {
       this.sub = this.route.params.subscribe(params => {
         this.id = params['id'];
         //TODO: chain observables
-        this.dataService.getArticle(id).subscribe((article: IArticleData) => {
+        this.dataService.getArticle(this.id).subscribe((article: IArticleData) => {
           this.article = article;
           this.articleImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + this.article.ImageLink);
           
