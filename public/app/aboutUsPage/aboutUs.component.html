@@ -1,8 +1,9 @@
 <div *ngIf="creators">
+    <div class="ui inverted very padded segment">
     <table class="ui inverted table">
         <thead><tr>
-            <th><h1 class="ui image header">Creator</h1></th>
-            <th><h1 class="ui image header">Contributions</h1></th>
+            <th class="six wide"><h1 class="ui image header">Creator</h1></th>
+            <th class="ten wide"><h1 class="ui image header">Contributions</h1></th>
         </tr></thead>
         <tbody>
             <tr *ngFor="let creator of creators">
@@ -26,14 +27,15 @@
     </table>
 
 
-<hr>
-<h1 class="ui header">Development Team</h1>
-<div class="ui stackable four column grid">
-    <div class="column">         
-        <img class="ui small circular image" src="images/vithushan.png">
-    </div>
-    <div class="column">
-        <img class="ui small circular image" src="images/sujee.png">
-    </div>
+    <hr>
+    <h1 class="ui header">Development Team</h1>
+    <div class="ui stackable four column grid">
+        <div class="column">         
+            <img class="ui small circular image" src="images/vithushan.png">
+        </div>
+        <div class="column">
+            <img class="ui small circular image" src="images/sujee.png">
+        </div>
 
-</div>
+    </div>
+    </div>
