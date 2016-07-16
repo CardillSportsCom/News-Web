@@ -1,13 +1,16 @@
 <div *ngIf="article">
+    <div class="ui segment container inverted">
 
-        <header class="jumbotron" [style.background-image]="articleImage">
-            <div class="article-header">
-                <h1>{{article.Name}}</h1>
-                
-                <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
-            </div> 
-        </header>
+            <header class="jumbotron" [style.background-image]="articleImage">
+                <div class="article-header">
+                    <h1>{{article.Name}}</h1>
+                    
+                    <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
+                </div> 
+            </header>
+    </div>
 
+    <div class="article-content ui segment container inverted very padded">
         <article>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -62,9 +65,9 @@
                 </div>
             </div>
         </article>
-    
-      
-</div>   
+    </div>
+</div>  
+
 <div *ngIf="!article" class="row">
    No article found
 </div>  

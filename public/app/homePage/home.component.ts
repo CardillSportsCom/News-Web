@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   featuredArticle: IArticleData;
   articles: IArticleData[] = [];
   bannerImage: SafeStyle;
-  numberOfArticles: number = 5;
+  numberOfArticles: number = 7;
 
   constructor(private dataService: DataService, private sanitizer: DomSanitizationService) { }
   
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.dataService.getHomePageArticles(this.numberOfArticles)
       .subscribe((articles: IArticleData[]) => {
         this.featuredArticle = articles[0];
-        this.bannerImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + this.featuredArticle.ImageLink);
+        this.bannerImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/" + this.featuredArticle.ImageLink);
         this.articles = articles.slice(1);
       });
   }

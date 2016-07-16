@@ -1,16 +1,17 @@
 <div class="articles view indent">
     <div class="container">
-        <div class="row">
+        <div class="ui basic center aligned segment">
             <div class="col-md-10">
                     <filter-textbox class="navbar-right"
                      (changed)="filterChanged($event)"></filter-textbox>
                 
             </div>
         </div>
-    
-        <article-cards 
-          [articles]="filteredArticles"></article-cards>
 
+        <div class="ui basic segment">
+            <article-cards 
+                [articles]="filteredArticles"></article-cards>
+        </div>
     </div>
 
     

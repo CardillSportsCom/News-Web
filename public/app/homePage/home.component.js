@@ -20,14 +20,14 @@ var HomeComponent = (function () {
         this.dataService = dataService;
         this.sanitizer = sanitizer;
         this.articles = [];
-        this.numberOfArticles = 5;
+        this.numberOfArticles = 7;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.dataService.getHomePageArticles(this.numberOfArticles)
             .subscribe(function (articles) {
             _this.featuredArticle = articles[0];
-            _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.featuredArticle.ImageLink);
+            _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/" + _this.featuredArticle.ImageLink);
             _this.articles = articles.slice(1);
         });
     };
