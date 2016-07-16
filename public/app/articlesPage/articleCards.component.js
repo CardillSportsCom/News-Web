@@ -12,11 +12,12 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var capitalize_pipe_1 = require('../shared/pipes/capitalize.pipe');
 var trim_pipe_1 = require('../shared/pipes/trim.pipe');
+var embed_component_1 = require('./embed.component');
 var ArticleCardsComponent = (function () {
     function ArticleCardsComponent() {
         this.articles = [];
     }
-    ArticleCardsComponent.prototype.ngOnInit = function () {
+    ArticleCardsComponent.prototype.ngOnChanges = function () {
     };
     __decorate([
         core_1.Input(), 
@@ -27,7 +28,7 @@ var ArticleCardsComponent = (function () {
             moduleId: module.id,
             selector: 'article-cards',
             templateUrl: 'articleCards.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES, embed_component_1.SemanticEmbedComponent],
             pipes: [capitalize_pipe_1.CapitalizePipe, trim_pipe_1.TrimPipe],
             //When using OnPush detectors, then the framework will check an OnPush 
             //component when any of its input properties changes, when it fires 
