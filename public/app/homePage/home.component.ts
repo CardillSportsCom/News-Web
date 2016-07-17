@@ -3,7 +3,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 //import { Observable } from 'rxjs/Observable';
 import { FeaturedArticleComponent } from './featuredArticle/featuredArticle.component';
 import { DataService } from '../shared/services/data.service';
-import { ArticleCardsComponent } from '../articlesPage/articleCards.component';
+import { ArticleCardsComponent } from '../articlesPage/articleCards/articleCards.component';
 import { DomSanitizationService, SafeStyle} from '@angular/platform-browser';
 import { IArticleData } from '../shared/interfaces';
 

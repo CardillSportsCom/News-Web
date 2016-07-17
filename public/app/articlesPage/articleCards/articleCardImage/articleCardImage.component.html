@@ -1,0 +1,14 @@
+<div #image *ngIf="article" class="ui blurring dimmable large image">
+    <div class="ui dimmer">
+    <div class="content">
+        <a [routerLink]="['/article',article._id.toString()]">
+        <div class="center container">
+            <div *ngIf="article.ArticleItems[0].Type == 'Text'" class="ui basic segment">
+                <h4>{{article.ArticleItems[0].Paragraph | truncate : 500 }} </h4>
+            </div>        
+        </div>
+        </a>
+    </div>
+    </div>
+    <img src="images/{{article.ImageLink}}">
+</div>

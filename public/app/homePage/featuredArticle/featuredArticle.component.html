@@ -1,7 +1,7 @@
 <!-- Banner -->  
 
 <div *ngIf="bannerImage  && article" id="banner" [style.background-image]="bannerImage">          
-        <div class="ui raised center aligned very padded text container basic segment">
+    <div class="ui raised center aligned very padded text container basic segment">
         <div class="transparent">
             <h1>{{article.Name}}</h1>    
             <img class="img-responsive featured-author-img circular " src="images/{{article.Owner.userPicture}}">

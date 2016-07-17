@@ -13,7 +13,7 @@ var router_1 = require('@angular/router');
 //import { Observable } from 'rxjs/Observable';
 var featuredArticle_component_1 = require('./featuredArticle/featuredArticle.component');
 var data_service_1 = require('../shared/services/data.service');
-var articleCards_component_1 = require('../articlesPage/articleCards.component');
+var articleCards_component_1 = require('../articlesPage/articleCards/articleCards.component');
 var platform_browser_1 = require('@angular/platform-browser');
 var HomeComponent = (function () {
     function HomeComponent(dataService, sanitizer) {

@@ -10,36 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var capitalize_pipe_1 = require('../shared/pipes/capitalize.pipe');
-var trim_pipe_1 = require('../shared/pipes/trim.pipe');
-var trackby_service_1 = require('../shared/services/trackby.service');
-var CustomersCardComponent = (function () {
-    function CustomersCardComponent(trackby) {
-        this.trackby = trackby;
+var capitalize_pipe_1 = require('../../shared/pipes/capitalize.pipe');
+var trim_pipe_1 = require('../../shared/pipes/trim.pipe');
+var articleCardImage_component_1 = require('./articleCardImage/articleCardImage.component');
+var ArticleCardsComponent = (function () {
+    function ArticleCardsComponent() {
         this.articles = [];
-        this.foo = "FOrrrO";
     }
-    CustomersCardComponent.prototype.ngOnInit = function () {
+    ArticleCardsComponent.prototype.ngOnInit = function () {
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
-    ], CustomersCardComponent.prototype, "articles", void 0);
-    CustomersCardComponent = __decorate([
+    ], ArticleCardsComponent.prototype, "articles", void 0);
+    ArticleCardsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'customers-card',
-            templateUrl: 'customersCard.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES],
+            selector: 'article-cards',
+            templateUrl: 'articleCards.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES, articleCardImage_component_1.ArticleCardImageComponent],
             pipes: [capitalize_pipe_1.CapitalizePipe, trim_pipe_1.TrimPipe],
             //When using OnPush detectors, then the framework will check an OnPush 
             //component when any of its input properties changes, when it fires 
             //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [trackby_service_1.TrackByService])
-    ], CustomersCardComponent);
-    return CustomersCardComponent;
+        __metadata('design:paramtypes', [])
+    ], ArticleCardsComponent);
+    return ArticleCardsComponent;
 }());
-exports.CustomersCardComponent = CustomersCardComponent;
-//# sourceMappingURL=customersCard.component.js.map
+exports.ArticleCardsComponent = ArticleCardsComponent;
+//# sourceMappingURL=articleCards.component.js.map

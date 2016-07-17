@@ -1,13 +1,8 @@
 <div class="ui stackable two column centered grid cards">
     <div *ngFor="let article of articles;">
-        <div class="ui fluid card">                
-                                
-                    <div *ngIf="article.Type == 'Article'">
+        <div class="ui fluid card">                 
+                        <article-card-image [article]="article"></article-card-image>
                         <a [routerLink]="['/article',article._id.toString()]">
-                            <div class="ui large image">
-                                <img src="images/{{article.ImageLink}}">
-                            </div>
-                            
                             <div class="content article-metadata">
                                 <a class="header"><h4>{{article.Name}}</h4></a>                    
                             </div>
@@ -19,7 +14,7 @@
                             </div>
 
                         </a>
-                    </div>
+                 
               
         </div>
     </div>
