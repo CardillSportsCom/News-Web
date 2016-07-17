@@ -10,25 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var app_providers_1 = require('./app.providers');
-var home_component_1 = require('./homePage/home.component');
-var navigation_component_1 = require('./navigation/navigation.component');
-var footer_component_1 = require('./footer/footer.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var FooterComponent = (function () {
+    function FooterComponent() {
     }
-    AppComponent = __decorate([
+    FooterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app-container',
-            template: "\n    <navigation></navigation>\n    <router-outlet></router-outlet>\n    <footer></footer>\n  ",
-            directives: [router_1.ROUTER_DIRECTIVES, navigation_component_1.NavigationComponent, footer_component_1.FooterComponent],
-            providers: [app_providers_1.APP_PROVIDERS],
-            precompile: [home_component_1.HomeComponent, navigation_component_1.NavigationComponent]
+            selector: 'footer',
+            templateUrl: 'footer.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], FooterComponent);
+    return FooterComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.FooterComponent = FooterComponent;
+//# sourceMappingURL=footer.component.js.map
