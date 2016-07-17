@@ -1,23 +1,15 @@
 <!-- Banner -->  
-<div class="ui container">      
-    <div *ngIf="bannerImage  && article" id="banner" [style.background-image]="bannerImage">          
-        <div class="ui center aligned basic segment">
 
-      
-               <div class="transparent">
-                <h1>{{article.Name}}</h1>
-            
-                <img class="img-responsive featured-author-img circular " src="images/{{article.Owner.userPicture}}">
-                <h4>{{article.Owner.firstName | uppercase }} {{article.Owner.lastName | uppercase}}</h4>
-                <a [routerLink]="['/article',article._id.toString()]">
-                    <button class="ui teal button">Read More</button>
-                </a>
-            </div>        
-    
-        </div>
-     
-            
-         
-        
-    </div>
+<div *ngIf="bannerImage  && article" id="banner" [style.background-image]="bannerImage">          
+        <div class="ui raised center aligned very padded text container basic segment">
+        <div class="transparent">
+            <h1>{{article.Name}}</h1>    
+            <img class="img-responsive featured-author-img circular " src="images/{{article.Owner.userPicture}}">
+            <h4>{{article.Owner.firstName | uppercase }} {{article.Owner.lastName | uppercase}}</h4>
+            <a [routerLink]="['/article',article._id.toString()]">
+                <button class="ui teal button">Read More</button>
+            </a>
+        </div>        
+    </div>                 
 </div>
+
