@@ -65,7 +65,7 @@ router.put('/article/:id/rating/:rating', function(req, res, next) {
     var id = req.params.id;
     var rating = req.params.rating;
 
-    ArticleModel.findOne({ID: id}, function(err, article){
+    ArticleModel.findById(id, function(err, article){
         if(err){ return next(err); }
         // Calculate new average
         article.Rating =    ((parseFloat(article.Rating) * parseFloat(article.TotalRatings)) + parseFloat(rating)) / 
@@ -86,7 +86,7 @@ router.put('/article/:id/comment/:comment', function(req, res, next) {
     var id = req.params.id;
     var comment = req.params.comment;
 
-    ArticleModel.findOne({ID: id}, function(err, article){
+    ArticleModel.findById(id, function(err, article){
         if(err){ return next(err); }
         
         var commentObj = {"Name": "Anonymous",
