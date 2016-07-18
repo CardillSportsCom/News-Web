@@ -5,9 +5,11 @@ import { Component, Output, EventEmitter } from '@angular/core';
   template: `
     <form>
          <h4><i class="icon search"></i>Search:</h4>
-         <input type="text" name="filter"
+         <div class="ui search">
+         <input class="prompt" type="text" name="filter"
                 [(ngModel)]="model.filter" 
                 (keyup)="filterChanged($event)"  />
+          </div>
     </form>
   `
 })

@@ -1,36 +1,40 @@
 <div *ngIf="article">
+    <div class="ui segment container inverted">
 
-        <header class="jumbotron" [style.background-image]="articleImage">
-            <div class="article-header">
-                <h1>{{article.Name}}</h1>
-                
-                <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
-            </div> 
-        </header>
+            <header class="jumbotron" [style.background-image]="articleImage">
+                <div class="article-header">
+                    <h1>{{article.Name}}</h1>
+                    
+                    <p>{{article.Owner.firstName}} {{article.Owner.lastName}} | Contributor</p>        
+                </div> 
+            </header>
+    </div>
 
+    <div class="article-content ui segment container inverted ">
         <article>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                  <div *ngFor="let item of article.ArticleItems;">
-                    <div *ngIf="item.Type == 'Text'">
-                      <!--<p class="post-text">{{item.Paragraph}}</p> -->
-                      <p class="post-text" [innerHTML]="item.Paragraph"></p>
-                      <br>
+            <div class="ui inverted very padded segment">
+                 <div *ngFor="let item of article.ArticleItems;">
+                    <div class="ui inverted segment" *ngIf="item.Type == 'Text'">                                            
+                        
+                        <p class="post-text" [innerHTML]="item.Paragraph"></p>
                     </div>
-                  </div>
-                </div>
+
+                    <div *ngIf="item.Type == 'SoundCloud'">
+                       
+                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/272651007&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                       
+                    </div>
+                 </div>
             </div>
             
-            <div class="row">
+            <div class="ui segment inverted">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                      <sm-rating (onRate)="onReceiveRating($event)" [initialRating]="articleRating" [maxRating]="5"></sm-rating>
                 </div>
             </div>
 
-            <br>
-
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="ui segment inverted">
+                
                 
                     <div class="ui centered comments">            
                         <h3 class="ui dividing header">Comments</h3>
@@ -58,13 +62,13 @@
                         </form>
                         
                                 
-                    </div>
+                    
                 </div>
             </div>
         </article>
-    
-      
-</div>   
+    </div>
+</div>  
+
 <div *ngIf="!article" class="row">
    No article found
 </div>  

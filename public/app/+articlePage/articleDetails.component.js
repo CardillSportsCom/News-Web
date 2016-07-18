@@ -20,39 +20,38 @@ var ArticleDetailsComponent = (function () {
         this.sanitizer = sanitizer;
         this.route = route;
         this.dataService = dataService;
-        this.foo = "images/male.png";
         this.articleRating = 0;
         this.latestComment = "";
     }
     ArticleDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            var id = +params['id']; // (+) converts string 'id' to a number
+            _this.id = params['id'];
             //TODO: chain observables
-            _this.dataService.getArticle(id).subscribe(function (article) {
+            _this.dataService.getArticle(_this.id).subscribe(function (article) {
                 _this.article = article;
-                _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/overlay.png'), url('/images/" + _this.article.ImageLink);
+                _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('https://s3.amazonaws.com/cardillsports/" + _this.article.ImageLink);
                 _this.articleRating = Math.round(article.Rating);
             });
         });
     };
     ArticleDetailsComponent.prototype.onReceiveRating = function (rating) {
-        this.dataService.postRating(this.article.ID, rating)
+        this.dataService.postRating(this.id, rating)
             .subscribe(function (response) {
             console.log(response);
         });
     };
     ArticleDetailsComponent.prototype.onSubmit = function (comment) {
         var _this = this;
-        this.dataService.postComment(this.article.ID, comment)
+        this.dataService.postComment(this.id, comment)
             .subscribe(function (postedComment) {
             _this.article.Comments.push(postedComment);
             _this.latestComment = "";
         });
     };
-    ArticleDetailsComponent.prototype.stringAsDate = function (date){
-        return new Date(date);
-    }
+    ArticleDetailsComponent.prototype.stringAsDate = function (dateStr) {
+        return new Date(dateStr);
+    };
     ArticleDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

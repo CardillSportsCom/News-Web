@@ -13,7 +13,7 @@ var router_1 = require('@angular/router');
 //import { Observable } from 'rxjs/Observable';
 var data_service_1 = require('../shared/services/data.service');
 var filterTextbox_component_1 = require('../filterTextbox/filterTextbox.component');
-var articleCards_component_1 = require('./articleCards.component');
+var articleCards_component_1 = require('./articleCards/articleCards.component');
 var ArticlesPageComponent = (function () {
     function ArticlesPageComponent(dataService) {
         this.dataService = dataService;

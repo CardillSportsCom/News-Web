@@ -2,9 +2,10 @@ export interface IArticleData {
     ID: number;
     Name: string;
     ImageLink: string;
-    Owner: IOwner;
+    Owner: ICreator;
     ArticleItems: IArticleItem[];
     Comments: IComment[];
+    Rating: number;
 }
 
 export interface IComment {
@@ -13,7 +14,7 @@ export interface IComment {
     Date: Date;
 }
 
-export interface IOwner {
+export interface ICreator {
     ID: number;
     firstName: string;
     lastName: string;

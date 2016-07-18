@@ -2,7 +2,19 @@ a:focus, a:hover {
     text-decoration: none;
 }
 h4 {
-    color: #51baa4
+    color: #51baa4;
+}
+
+h5 {
+    color: #51baa4;
+}
+
+h1 {
+    color: #51baa4;
+}
+
+.newspaper {
+    color:#51baa4;
 }
 
 
@@ -78,53 +90,6 @@ html.touch *:hover {
 	color: #FFFFFF;
     font-size: initial;
     font-family: inherit;
-}
-
-.a-new-beginning-dwight-howard {
-    background-image: url(/images/a-new-beginning-dwight-howard.jpg);
-}
-.parity-what-nba-parity {
-    background-image: url(/images/parity-what-nba-parity.jpg);
-}
-
-.meet-jakob-poeltl {
-    background-image: url(/images/meet-jakob-poeltl.png);
-}
-
-.missing-stroshow {
-    background-image: url(/images/missing-stroshow.jpg);
-}
-
-.long-live-the-king {
-    background-image: url(/images/long-live-the-king.jpg);
-}
-
-.power-of-veto {
-    background-image: url(/images/power-of-veto.jpg);
-}
-
-.draft-retro {
-	 background-image: url(/images/draft-retro.png);
-}
-
-.not-so-fast {
-    background-image: url(/images/not-so-fast.jpg);
-}
-
-.finals-preview {
-    background-image: url(/images/finals-preview.png);      
-}
-
-.the-day-i-said-what-if {
-    background-image: url(/images/the-day-i-said-what-if.png);      
-}
-
-.rd2-gm7 {
-    background-image: url(/images/rd2-gm7.png);   
-}
-
-.f-clevland {
-    background-image: url(/images/f-clevland.png);
 }
 
 .list {

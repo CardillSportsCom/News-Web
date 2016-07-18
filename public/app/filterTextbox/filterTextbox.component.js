@@ -25,7 +25,7 @@ var FilterTextboxComponent = (function () {
     FilterTextboxComponent = __decorate([
         core_1.Component({
             selector: 'filter-textbox',
-            template: "\n    <form>\n         <h4><i class=\"icon search\"></i>Search:</h4>\n         <input type=\"text\" name=\"filter\"\n                [(ngModel)]=\"model.filter\" \n                (keyup)=\"filterChanged($event)\"  />\n    </form>\n  "
+            template: "\n    <form>\n         <h4><i class=\"icon search\"></i>Search:</h4>\n         <div class=\"ui search\">\n         <input class=\"prompt\" type=\"text\" name=\"filter\"\n                [(ngModel)]=\"model.filter\" \n                (keyup)=\"filterChanged($event)\"  />\n          </div>\n    </form>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], FilterTextboxComponent);
