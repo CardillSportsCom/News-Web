@@ -4,7 +4,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { TrimPipe } from '../../shared/pipes/trim.pipe';
 import { IArticleData } from '../../shared/interfaces';
-import { TrackByService } from '../../shared/services/trackby.service';
 import { ArticleCardImageComponent } from './articleCardImage/articleCardImage.component';
 
 @Component({ 

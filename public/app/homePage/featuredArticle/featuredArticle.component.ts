@@ -5,7 +5,6 @@ import { SafeStyle} from '@angular/platform-browser';
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 import { TrimPipe } from '../../shared/pipes/trim.pipe';
 import { IArticleData } from '../../shared/interfaces';
-import { TrackByService } from '../../shared/services/trackby.service';
 
 @Component({ 
   moduleId: module.id,
