@@ -3,7 +3,7 @@
 */
 
 .transparent {
-	background: url('/images/overlay.png');
+	background-color: rgba(0, 0, 0, 0.72);
 	padding: 1.5em;
 	border: #00b5ad;
 	border-width: 2px;
