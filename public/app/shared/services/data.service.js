@@ -21,7 +21,7 @@ var DataService = (function () {
         this._baseUrl = '';
     }
     DataService.prototype.postRating = function (id, rating) {
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
+        return this.http.put(this._baseUrl + 'api/content/' + id + "/rating/" + rating, {})
             .map(function (res) {
             var body = res.json();
             return body.data || {};
@@ -30,17 +30,18 @@ var DataService = (function () {
     };
     DataService.prototype.postComment = function (id, comment) {
         var _this = this;
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
+        return this.http.put(this._baseUrl + 'api/content/' + id + "/comment/" + comment, {})
             .map(function (res) {
             _this.lastPostedComment = res.json();
             return _this.lastPostedComment;
         })
             .catch(this.handleError);
     };
+    // Gets all articles and podcasts
     DataService.prototype.getAllArticles = function () {
         var _this = this;
         if (!this.allArticles) {
-            return this.http.get(this._baseUrl + 'api/articles')
+            return this.http.get(this._baseUrl + 'api/content')
                 .map(function (res) {
                 _this.allArticles = res.json();
                 return _this.allArticles;
@@ -50,6 +51,38 @@ var DataService = (function () {
         else {
             //return cached data
             return this.createObservable(this.allArticles);
+        }
+    };
+    // Gets articles only
+    DataService.prototype.getArticles = function () {
+        var _this = this;
+        if (!this.articles) {
+            return this.http.get(this._baseUrl + 'api/articles')
+                .map(function (res) {
+                _this.articles = res.json();
+                return _this.articles;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.articles);
+        }
+    };
+    // Gets podcasts only
+    DataService.prototype.getPodcasts = function () {
+        var _this = this;
+        if (!this.articles) {
+            return this.http.get(this._baseUrl + 'api/podcasts')
+                .map(function (res) {
+                _this.articles = res.json();
+                return _this.articles;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.articles);
         }
     };
     DataService.prototype.getAllCreators = function () {
@@ -69,9 +102,11 @@ var DataService = (function () {
     };
     DataService.prototype.getHomePageArticles = function (limit) {
         var _this = this;
+        console.log("VITH");
         if (!this.homeArticles) {
-            return this.http.get(this._baseUrl + 'api/articles/' + limit)
+            return this.http.get(this._baseUrl + 'api/home-content/' + limit)
                 .map(function (res) {
+                console.log("VITH2");
                 _this.homeArticles = res.json();
                 return _this.homeArticles;
             })
@@ -83,7 +118,7 @@ var DataService = (function () {
         }
     };
     DataService.prototype.getArticle = function (id) {
-        return this.http.get(this._baseUrl + 'api/article/' + id)
+        return this.http.get(this._baseUrl + 'api/content/' + id)
             .map(function (res) {
             var article = res.json();
             return article;

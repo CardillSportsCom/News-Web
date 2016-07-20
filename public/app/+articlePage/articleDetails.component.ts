@@ -33,6 +33,7 @@ export class ArticleDetailsComponent implements OnInit {
         //TODO: chain observables
         this.dataService.getArticle(this.id).subscribe((article: IArticleData) => {
           this.article = article;
+          console.log(this.article);
           this.articleImage = this.sanitizer.bypassSecurityTrustStyle("url('/images/" + this.article.ImageLink);
           
           this.articleRating = Math.round(article.Rating); 

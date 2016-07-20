@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService, private sanitizer: DomSanitizationService) { }
   
   ngOnInit() {
-
+    console.log("VITH3");
     this.dataService.getHomePageArticles(this.numberOfArticles)
       .subscribe((articles: IArticleData[]) => {
         this.featuredArticle = articles[0];

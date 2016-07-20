@@ -9,6 +9,7 @@ var ArticleSchema = new Schema({
     Name: String,
     ImamgeLink: String,
     DateCreated: Date,
+    Owner: Object,
     Rating: Number,
     TotalRatings: Number,
     Comments: []
@@ -22,8 +23,24 @@ var CreatorSchema = new Schema ({
 });
 var CreatorModel = mongoose.model('Creator', CreatorSchema);
 
-router.get('/articles', function(req, res, next) {
+router.get('/content', function(req, res, next) {
     ArticleModel.find({}).sort({DateCreated: 'descending'}).exec(
+        function(err, articles){
+            if(err){ return next(err); }
+            res.json(articles);
+    });
+});
+
+router.get('/articles', function(req, res, next) {
+    ArticleModel.find({"Type": "Podcast"}).sort({DateCreated: 'descending'}).exec(
+        function(err, articles){
+            if(err){ return next(err); }
+            res.json(articles);
+    });
+});
+
+router.get('/podcasts', function(req, res, next) {
+    ArticleModel.find({"Type": "Podcast"}).sort({DateCreated: 'descending'}).exec(
         function(err, articles){
             if(err){ return next(err); }
             res.json(articles);
@@ -44,7 +61,7 @@ router.get('/creators', function(req, res, next) {
         });
 });
 
-router.get('/articles/:limit', function(req, res, next) {
+router.get('/home-content/:limit', function(req, res, next) {
     var limit = req.params.limit;
     ArticleModel.find({}).sort({DateCreated: 'descending'}).limit(limit).exec(
         function(err, articles){
@@ -53,7 +70,7 @@ router.get('/articles/:limit', function(req, res, next) {
     });
 });
 
-router.get('/article/:id', function(req, res, next) {
+router.get('/content/:id', function(req, res, next) {
     var id = req.params.id;
     ArticleModel.findById(id, function(err, article){
         if(err){ return next(err); }
@@ -61,7 +78,7 @@ router.get('/article/:id', function(req, res, next) {
     });
 });
 
-router.put('/article/:id/rating/:rating', function(req, res, next) {
+router.put('/content/:id/rating/:rating', function(req, res, next) {
     var id = req.params.id;
     var rating = req.params.rating;
 
@@ -82,7 +99,7 @@ router.put('/article/:id/rating/:rating', function(req, res, next) {
     });
 });
 
-router.put('/article/:id/comment/:comment', function(req, res, next) {
+router.put('/content/:id/comment/:comment', function(req, res, next) {
     var id = req.params.id;
     var comment = req.params.comment;
 

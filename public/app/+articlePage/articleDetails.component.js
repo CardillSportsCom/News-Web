@@ -31,6 +31,7 @@ var ArticleDetailsComponent = (function () {
             //TODO: chain observables
             _this.dataService.getArticle(_this.id).subscribe(function (article) {
                 _this.article = article;
+                console.log(_this.article);
                 _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/" + _this.article.ImageLink);
                 _this.articleRating = Math.round(article.Rating);
             });

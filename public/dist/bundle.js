@@ -23958,6 +23958,7 @@ $__System.registerDynamic("app/homePage/home.component.js", ["node_modules/@angu
     }
     HomeComponent.prototype.ngOnInit = function() {
       var _this = this;
+      console.log("VITH3");
       this.dataService.getHomePageArticles(this.numberOfArticles).subscribe(function(articles) {
         _this.featuredArticle = articles[0];
         _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/" + _this.featuredArticle.ImageLink);
@@ -43637,14 +43638,14 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
       this._baseUrl = '';
     }
     DataService.prototype.postRating = function(id, rating) {
-      return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {}).map(function(res) {
+      return this.http.put(this._baseUrl + 'api/content/' + id + "/rating/" + rating, {}).map(function(res) {
         var body = res.json();
         return body.data || {};
       }).catch(this.handleError);
     };
     DataService.prototype.postComment = function(id, comment) {
       var _this = this;
-      return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {}).map(function(res) {
+      return this.http.put(this._baseUrl + 'api/content/' + id + "/comment/" + comment, {}).map(function(res) {
         _this.lastPostedComment = res.json();
         return _this.lastPostedComment;
       }).catch(this.handleError);
@@ -43652,12 +43653,34 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
     DataService.prototype.getAllArticles = function() {
       var _this = this;
       if (!this.allArticles) {
-        return this.http.get(this._baseUrl + 'api/articles').map(function(res) {
+        return this.http.get(this._baseUrl + 'api/content').map(function(res) {
           _this.allArticles = res.json();
           return _this.allArticles;
         }).catch(this.handleError);
       } else {
         return this.createObservable(this.allArticles);
+      }
+    };
+    DataService.prototype.getArticles = function() {
+      var _this = this;
+      if (!this.articles) {
+        return this.http.get(this._baseUrl + 'api/articles').map(function(res) {
+          _this.articles = res.json();
+          return _this.articles;
+        }).catch(this.handleError);
+      } else {
+        return this.createObservable(this.articles);
+      }
+    };
+    DataService.prototype.getPodcasts = function() {
+      var _this = this;
+      if (!this.articles) {
+        return this.http.get(this._baseUrl + 'api/podcasts').map(function(res) {
+          _this.articles = res.json();
+          return _this.articles;
+        }).catch(this.handleError);
+      } else {
+        return this.createObservable(this.articles);
       }
     };
     DataService.prototype.getAllCreators = function() {
@@ -43673,8 +43696,10 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
     };
     DataService.prototype.getHomePageArticles = function(limit) {
       var _this = this;
+      console.log("VITH");
       if (!this.homeArticles) {
-        return this.http.get(this._baseUrl + 'api/articles/' + limit).map(function(res) {
+        return this.http.get(this._baseUrl + 'api/content/' + limit).map(function(res) {
+          console.log("VITH2");
           _this.homeArticles = res.json();
           return _this.homeArticles;
         }).catch(this.handleError);
@@ -43683,7 +43708,7 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
       }
     };
     DataService.prototype.getArticle = function(id) {
-      return this.http.get(this._baseUrl + 'api/article/' + id).map(function(res) {
+      return this.http.get(this._baseUrl + 'api/content/' + id).map(function(res) {
         var article = res.json();
         return article;
       }).catch(this.handleError);
@@ -54210,7 +54235,7 @@ $__System.registerDynamic("app/main.js", ["node_modules/@angular/platform-browse
   var app_component_1 = $__require('app/app.component.js');
   var app_routes_1 = $__require('app/app.routes.js');
   platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [app_routes_1.APP_ROUTER_PROVIDERS, forms_1.disableDeprecatedForms(), forms_1.provideForms()]).then(function(success) {
-    return console.log('AppComponent bootstrapped!');
+    return console.log('AppComponent bdssootstrapped!');
   }, function(error) {
     return console.log(error);
   });

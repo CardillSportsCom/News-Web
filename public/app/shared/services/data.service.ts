@@ -13,6 +13,7 @@ export class DataService {
     _cardillBase: string = 'http://cardillsports.gear.host/';
     _baseUrl: string = '';    
     allArticles: IArticleData[];
+    articles: IArticleData[];
     homeArticles: IArticleData[];
     lastPostedComment: IComment;
     allCreators: ICreator[];
@@ -20,7 +21,7 @@ export class DataService {
     constructor(private http: Http) { }
     
     postRating(id: string, rating: number) : Observable<Response> {
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {})
+        return this.http.put(this._baseUrl + 'api/content/' + id + "/rating/" + rating, {})
                     .map((res: Response) => {
                         let body = res.json();
                         return body.data || { };
@@ -29,7 +30,7 @@ export class DataService {
     }
 
     postComment(id: string, comment: string) : Observable<IComment> {
-        return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {})
+        return this.http.put(this._baseUrl + 'api/content/' + id + "/comment/" + comment, {})
                     .map((res: Response) => {
                         this.lastPostedComment = res.json();
                         return this.lastPostedComment;
@@ -37,9 +38,10 @@ export class DataService {
                     .catch(this.handleError);        
     }
 
+    // Gets all articles and podcasts
     getAllArticles() : Observable<IArticleData[]> {
         if (!this.allArticles) {
-            return this.http.get(this._baseUrl + 'api/articles')
+            return this.http.get(this._baseUrl + 'api/content')
                         .map((res: Response) => {
                             this.allArticles = res.json();                        
                             return this.allArticles;
@@ -49,6 +51,38 @@ export class DataService {
         else {
             //return cached data
             return this.createObservable(this.allArticles);
+        }
+    }
+
+    // Gets articles only
+    getArticles() : Observable<IArticleData[]> {
+        if (!this.articles) {
+            return this.http.get(this._baseUrl + 'api/articles')
+                        .map((res: Response) => {
+                            this.articles = res.json();                        
+                            return this.articles;
+                        })
+                        .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.articles);
+        }
+    }
+
+    // Gets podcasts only
+    getPodcasts() : Observable<IArticleData[]> {
+        if (!this.articles) {
+            return this.http.get(this._baseUrl + 'api/podcasts')
+                        .map((res: Response) => {
+                            this.articles = res.json();                        
+                            return this.articles;
+                        })
+                        .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.articles);
         }
     }
 
@@ -68,9 +102,11 @@ export class DataService {
     }
 
     getHomePageArticles(limit: number) : Observable<IArticleData[]> {
+        console.log("VITH");
         if (!this.homeArticles) {
-            return this.http.get(this._baseUrl + 'api/articles/' + limit)
+            return this.http.get(this._baseUrl + 'api/home-content/' + limit)
                         .map((res: Response) => {
+                            console.log("VITH2");
                             this.homeArticles = res.json();                        
                             return this.homeArticles;
                         })
@@ -84,7 +120,7 @@ export class DataService {
 
 
     getArticle(id: string) : Observable<IArticleData> {
-        return this.http.get(this._baseUrl + 'api/article/' + id)
+        return this.http.get(this._baseUrl + 'api/content/' + id)
                         .map((res: Response) => {
                             const article : IArticleData = res.json();                        
                             return article;
