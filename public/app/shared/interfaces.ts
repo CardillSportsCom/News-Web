@@ -15,7 +15,6 @@ export interface IComment {
 }
 
 export interface ICreator {
-    ID: number;
     firstName: string;
     lastName: string;
     userPicture: string;

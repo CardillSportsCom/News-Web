@@ -23958,9 +23958,10 @@ $__System.registerDynamic("app/homePage/home.component.js", ["node_modules/@angu
     }
     HomeComponent.prototype.ngOnInit = function() {
       var _this = this;
+      console.log("VITH3");
       this.dataService.getHomePageArticles(this.numberOfArticles).subscribe(function(articles) {
         _this.featuredArticle = articles[0];
-        _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/" + _this.featuredArticle.ImageLink);
+        _this.bannerImage = _this.sanitizer.bypassSecurityTrustStyle("url('https://s3.amazonaws.com/cardillsports/" + _this.featuredArticle.ImageLink);
         _this.articles = articles.slice(1);
       });
     };
@@ -24444,7 +24445,6 @@ $__System.registerDynamic("app/+articlePage/articleDetails.component.js", ["node
       this.sanitizer = sanitizer;
       this.route = route;
       this.dataService = dataService;
-      this.foo = "images/male.png";
       this.articleRating = 0;
       this.latestComment = "";
     }
@@ -24454,7 +24454,7 @@ $__System.registerDynamic("app/+articlePage/articleDetails.component.js", ["node
         _this.id = params['id'];
         _this.dataService.getArticle(_this.id).subscribe(function(article) {
           _this.article = article;
-          _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('/images/" + _this.article.ImageLink);
+          _this.articleImage = _this.sanitizer.bypassSecurityTrustStyle("url('https://s3.amazonaws.com/cardillsports/" + _this.article.ImageLink);
           _this.articleRating = Math.round(article.Rating);
         });
       });
@@ -43637,14 +43637,14 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
       this._baseUrl = '';
     }
     DataService.prototype.postRating = function(id, rating) {
-      return this.http.put(this._baseUrl + 'api/article/' + id + "/rating/" + rating, {}).map(function(res) {
+      return this.http.put(this._baseUrl + 'api/content/' + id + "/rating/" + rating, {}).map(function(res) {
         var body = res.json();
         return body.data || {};
       }).catch(this.handleError);
     };
     DataService.prototype.postComment = function(id, comment) {
       var _this = this;
-      return this.http.put(this._baseUrl + 'api/article/' + id + "/comment/" + comment, {}).map(function(res) {
+      return this.http.put(this._baseUrl + 'api/content/' + id + "/comment/" + comment, {}).map(function(res) {
         _this.lastPostedComment = res.json();
         return _this.lastPostedComment;
       }).catch(this.handleError);
@@ -43652,12 +43652,34 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
     DataService.prototype.getAllArticles = function() {
       var _this = this;
       if (!this.allArticles) {
-        return this.http.get(this._baseUrl + 'api/articles').map(function(res) {
+        return this.http.get(this._baseUrl + 'api/content').map(function(res) {
           _this.allArticles = res.json();
           return _this.allArticles;
         }).catch(this.handleError);
       } else {
         return this.createObservable(this.allArticles);
+      }
+    };
+    DataService.prototype.getArticles = function() {
+      var _this = this;
+      if (!this.articles) {
+        return this.http.get(this._baseUrl + 'api/articles').map(function(res) {
+          _this.articles = res.json();
+          return _this.articles;
+        }).catch(this.handleError);
+      } else {
+        return this.createObservable(this.articles);
+      }
+    };
+    DataService.prototype.getPodcasts = function() {
+      var _this = this;
+      if (!this.articles) {
+        return this.http.get(this._baseUrl + 'api/podcasts').map(function(res) {
+          _this.articles = res.json();
+          return _this.articles;
+        }).catch(this.handleError);
+      } else {
+        return this.createObservable(this.articles);
       }
     };
     DataService.prototype.getAllCreators = function() {
@@ -43673,8 +43695,10 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
     };
     DataService.prototype.getHomePageArticles = function(limit) {
       var _this = this;
+      console.log("VITH");
       if (!this.homeArticles) {
-        return this.http.get(this._baseUrl + 'api/articles/' + limit).map(function(res) {
+        return this.http.get(this._baseUrl + 'api/home-content/' + limit).map(function(res) {
+          console.log("VITH2");
           _this.homeArticles = res.json();
           return _this.homeArticles;
         }).catch(this.handleError);
@@ -43683,7 +43707,7 @@ $__System.registerDynamic("app/shared/services/data.service.js", ["node_modules/
       }
     };
     DataService.prototype.getArticle = function(id) {
-      return this.http.get(this._baseUrl + 'api/article/' + id).map(function(res) {
+      return this.http.get(this._baseUrl + 'api/content/' + id).map(function(res) {
         var article = res.json();
         return article;
       }).catch(this.handleError);

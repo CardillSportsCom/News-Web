@@ -24,6 +24,7 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log("VITH3");
         this.dataService.getHomePageArticles(this.numberOfArticles)
             .subscribe(function (articles) {
             _this.featuredArticle = articles[0];

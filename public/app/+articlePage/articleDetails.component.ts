@@ -33,7 +33,6 @@ export class ArticleDetailsComponent implements OnInit {
         this.dataService.getArticle(this.id).subscribe((article: IArticleData) => {
           this.article = article;
           this.articleImage = this.sanitizer.bypassSecurityTrustStyle("url('https://s3.amazonaws.com/cardillsports/" + this.article.ImageLink);
-          
           this.articleRating = Math.round(article.Rating); 
         });
       });
