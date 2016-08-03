@@ -1,11 +1,32 @@
 
-    <featured-article
-        [article]="featuredArticle"
-        [bannerImage]="bannerImage"></featured-article>
+<div class="ui page grid">
+    <div class="one column row" style="padding-bottom:0.5em;">
+        <div class="column" style="padding:0;">
+            <featured-article
+            [article]="featuredArticle"
+            [bannerImage]="bannerImage"></featured-article>
+        </div>
+    </div>
+    <div class="two column row" style="padding-top:0;">
+        <div class="ten wide column" style="padding:0;">
+            <div class="ui inverted segment">
+                <article-cards
+                [articles]="articles"></article-cards>
+             </div>
+        </div>
+        <div class="ui six wide column center aligned segment" style="padding:0;">
+            <div>
+                <h1>Coming Soon: Quizzes</h1>
+                <br/><br/><br/><br/><br/><br/>
+            </div>
+            <div class="ui divider"></div>
+            <div>
+                <h1>Coming Soon: Polls</h1>
+                <br/><br/><br/><br/><br/><br/>
+            </div>
+            <div class="ui divider"></div>
 
-<div class="ui inverted segment">
-    <article-cards
-          [articles]="articles"></article-cards>
+        </div>
+    </div>
 </div>
-    
         

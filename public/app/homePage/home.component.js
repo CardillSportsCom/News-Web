@@ -20,7 +20,7 @@ var HomeComponent = (function () {
         this.dataService = dataService;
         this.sanitizer = sanitizer;
         this.articles = [];
-        this.numberOfArticles = 7;
+        this.numberOfArticles = 3;
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;

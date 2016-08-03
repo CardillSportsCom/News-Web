@@ -1,7 +1,12 @@
-<div class="ui stackable two column centered grid cards">
+<div class="ui centered cards">
     <div *ngFor="let article of articles;">
-        <div class="ui fluid card">                 
-                        <article-card-image [article]="article"></article-card-image>
+        <div class="ui fluid card">
+            <div class="ui grid">
+                <div class="two column row">
+                    <div class="column" style="padding-right:0;">
+                        <article-card-image [article]="article"></article-card-image>                        
+                    </div>
+                    <div class="column" style="padding-left:0;">
                         <a [routerLink]="['/article',article._id.toString()]">
                             <div class="content article-metadata">
                                 <a class="header"><h4>{{article.Name}}</h4></a>                    
@@ -12,10 +17,10 @@
                                     <span class="author-name">{{article.Owner.firstName | uppercase}} {{article.Owner.lastName | uppercase}}</span>
                                 </div>   
                             </div>
-
                         </a>
-                 
-              
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
     <div *ngIf="!articles.length">

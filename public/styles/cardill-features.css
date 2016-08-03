@@ -11,14 +11,14 @@
 }
 
 	#banner {
-		padding: 8em 0 6em 0;
+		/*padding: 8em 0 6em 0;*/
 		background-color: #1E2832;
 		color: rgba(255, 255, 255, 0.75);
 		background-attachment: fixed;
 		background-size: cover;
 		background-position: 38%;
 		text-align: center;
-		margin-bottom: 2em;
+		/*margin-bottom: 2em;*/
 	}
 
 main {
@@ -168,4 +168,8 @@ h3 {
 #cs-logo {
 	height: 50px;
 	width: 50px;
+}
+
+.ui.card {
+	background:#2f2f2f !important;
 }
